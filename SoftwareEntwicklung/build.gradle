@@ -40,7 +40,7 @@ jar {
     
 sonarqube {
     properties {
-    property "sonar.projectName", "SE2015-02-Hnefatafl"
+    property "sonar.projectName", "SE2015WS-02-Hnefatafl"
     property "sonar.projectKey", "de.htwg.Hnefatafl"
     property "sonar.projectVersion", "2.0"
     property "sonar.binaries", "build/classes"
