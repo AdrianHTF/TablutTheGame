@@ -11,7 +11,9 @@ public class controller{
 	public void printField(){
 		for (int i = 0; i < gamfield.getSizeOfGameField(); i++){
 			for (int j = 0; j< gamfield.getSizeOfGameField(); j++){
-				System.out.println(gamfield.getField(j, i));
+				if((j % gamfield.getSizeOfGameField()) == 0)
+					System.out.println("\n");
+				System.out.print(gamfield.getField(j, i));
 			}
 		}
 	}
