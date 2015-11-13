@@ -35,7 +35,7 @@ sourceSets {
 }
 
 jar {
-    manifest.attributes "Main-Class":"de.htwg.stratego.StrategoApp"
+    manifest.attributes "Main-Class":"de.htwg.aview.textUI"
 }
     
 sonarqube {
