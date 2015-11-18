@@ -50,7 +50,7 @@ public class field {
 			d = "X";
 		}
 		StringBuilder s = new StringBuilder();
-		s.append("|").append(d).append("|");
+		s.append(" ").append(d).append(" ");
 		
 		return s.toString();
 	}
