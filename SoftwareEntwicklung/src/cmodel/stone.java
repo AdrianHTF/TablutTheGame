@@ -10,6 +10,7 @@ public class stone {
 	private final int attack = 1;
 	private final int defense = 2;
 	private final int king = 3;
+	int aktive = 0;
 	/**
 	 * 
 	 * @param pUnitSpecification 
@@ -19,12 +20,18 @@ public class stone {
 	public stone(int pUnitSpecification){
 		if(pUnitSpecification == 0)
 			unitSpecification = 0;
-		else if(pUnitSpecification == 1)
+		else if(pUnitSpecification == 1){
+			aktive = 1;
 			unitSpecification = attack;
-		else if(pUnitSpecification == 2)
+			}
+		else if(pUnitSpecification == 2){
+			aktive = 2;
 			unitSpecification = defense;
-		else if(pUnitSpecification == 3)
+		}
+		else if(pUnitSpecification == 3){
+			aktive = 2;
 			unitSpecification = king;
+		}
 		else
 			System.err.println("Unit must be 1, 2 or 3");
 	}
@@ -33,5 +40,11 @@ public class stone {
 	}
 	public void setUnitSpecification(int unitSpecification) {
 		this.unitSpecification = unitSpecification;
+	}
+	public int getAktive(){
+		return aktive;
+	}
+	public void setAktive(int aktive){
+		this.aktive = aktive;
 	}
 }

@@ -8,24 +8,26 @@ package cmodel;
  */
 public class Gamefield {
 
-	
 	public static field[][] gamefield;
 	private int sizeOfGameField = 1;
 	
 
 	public Gamefield (int arraysize){
-		/**
-		 * Denk daran, am Ende die Feldgröße mindestens auf 3 setzen
-		 */		
+		
 		sizeOfGameField = arraysize;
+		
 		if (sizeOfGameField % 2 == 0){
 			System.err.println("Fieldsize must be odd");
 			return;
 		}
+		
 		gamefield = new field[sizeOfGameField][sizeOfGameField];
 		for (int i = 0; i < sizeOfGameField; i++){
 			for (int j = 0; j < sizeOfGameField; j++){
-				gamefield[j][i] = new field();
+				gamefield[i][j] = new field();
+				gamefield[i][j].setCharakter(new stone(0));
+				gamefield[i][j].setOccupied(0);
+				gamefield[i][j].setVictory(false);
 			}
 		}
 		setStandard();
@@ -78,7 +80,7 @@ public class Gamefield {
 			gamefield[max][middle-1].setCharakter(new stone(1));
 			gamefield[max][middle+1].setCharakter(new stone(1));
 			gamefield[max-1][middle].setCharakter(new stone(1));
-			
+					
 			gamefield[middle][max].setCharakter(new stone(1));
 			gamefield[middle-1][max].setCharakter(new stone(1));
 			gamefield[middle+1][max].setCharakter(new stone(1));

@@ -27,7 +27,6 @@ public class field {
 	}
 
 	public stone getCharakter() {
-	
 		return charakter;
 	}
 
@@ -46,7 +45,7 @@ public class field {
 			d = "D";
 		}else if (k.getUnitSpecification() == 3){
 			d = "K";
-		}else if (getOccupied() == 1){
+		}else if (isVictory() == true){
 			d = "X";
 		}
 		StringBuilder s = new StringBuilder();
