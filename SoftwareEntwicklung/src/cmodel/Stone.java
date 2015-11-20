@@ -10,7 +10,7 @@ public class Stone {
 	private final int attack = 1;
 	private final int defense = 2;
 	private final int king = 3;
-	int aktive = 0;
+	private int aktive = 0;
 	/**
 	 * 
 	 * @param pUnitSpecification 

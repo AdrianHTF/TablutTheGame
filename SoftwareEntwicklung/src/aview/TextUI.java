@@ -8,13 +8,16 @@ public class TextUI {
 	private int gameFieldSize = 0;
 	
 	public TextUI(){
-		controller = new Controller(gameFieldSize);
+		
 	}
 	public void setGameFieldSize(int a){
 		gameFieldSize = a;
 	}
 	public int getGameFieldSize(){
 		return gameFieldSize;
+	}
+	public void setController(){
+		controller = new Controller(gameFieldSize);
 	}
 	
 	public static void main(String [] args){
@@ -32,12 +35,12 @@ public class TextUI {
 					ui.setGameFieldSize(a);
 				else
 					System.out.println("Spielfeldgroesse nur in 9*9, 11*11 oder 13*13");
-			}
-			else 
+			} else {
 				System.out.println("Falsche Eingabe!");
+			}
 		}
 		
-	    
+	    ui.setController();
 		ui.controller.printField();
 		
 		int xStart = 0;
