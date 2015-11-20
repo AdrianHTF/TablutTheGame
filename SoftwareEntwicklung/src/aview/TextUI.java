@@ -5,15 +5,23 @@ import java.util.Scanner;;
 
 public class TextUI {
 	private Controller controller;
-	public static int gameFieldSize = 0;
+	private int gameFieldSize = 0;
 	
 	public TextUI(){
 		controller = new Controller(gameFieldSize);
 	}
+	public void setGameFieldSize(int a){
+		gameFieldSize = a;
+	}
+	public int getGameFieldSize(){
+		return gameFieldSize;
+	}
 	
 	public static void main(String [] args){
 		
-		while(gameFieldSize == 0){
+		TextUI ui = new TextUI();
+		
+		while(ui.getGameFieldSize() == 0){
 			
 			System.out.println("Geben sie Eine Feldgroesse an(9, 11, 13)");
 			Scanner sc = new Scanner(System.in);
@@ -21,7 +29,7 @@ public class TextUI {
 			if(sc.hasNextInt()){
 				int a = sc.nextInt();
 				if(a == 9 || a == 11 || a == 13)
-					gameFieldSize = a;
+					ui.setGameFieldSize(a);
 				else
 					System.out.println("Spielfeldgroesse nur in 9*9, 11*11 oder 13*13");
 			}
@@ -29,7 +37,7 @@ public class TextUI {
 				System.out.println("Falsche Eingabe!");
 		}
 		
-	    TextUI ui = new TextUI();
+	    
 		ui.controller.printField();
 		
 		int xStart = 0;

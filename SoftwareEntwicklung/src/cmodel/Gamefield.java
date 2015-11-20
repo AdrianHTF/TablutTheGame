@@ -8,7 +8,7 @@ package cmodel;
  */
 public class Gamefield {
 
-	public static Field[][] gamefield;
+	private Field[][] gamefield;
 	private int sizeOfGameField = 1;
 	
 
