@@ -1,6 +1,5 @@
 package bcontroller;
 import cmodel.*;
-
 public class Controller{
 	
 	private Gamefield gamefield;
