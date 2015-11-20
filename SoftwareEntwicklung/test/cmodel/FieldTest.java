@@ -61,5 +61,14 @@ public class FieldTest {
 		f2.setCharakter(new Stone(2));
 		assertNotNull(f2.getCharakter());
 	}
+	
+	@Test
+	public void testToString(){
+		assertEquals(" _ ", f1.toString());
+		assertEquals(" A ", f2.toString());
+		assertEquals(" D ", f3.toString());
+		assertEquals(" K ", f4.toString());
+		assertEquals(" X ", f5.toString());
+	}
 
 }

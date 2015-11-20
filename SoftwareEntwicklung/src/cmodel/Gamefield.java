@@ -33,13 +33,13 @@ public class Gamefield {
 		setStandard();
 		setStartfield();
 	}
-	public Field[][] getField(){
+	public Field[][] getGameField(){
 		return gamefield;
 	}
 	public Field getField(int xAxis, int yAxis){
 		return gamefield[xAxis][yAxis];
 	}
-	public void setField(Field[][] f){
+	public void setGameField(Field[][] f){
 		gamefield = f;
 	}
 	public int getSizeOfGameField(){

@@ -4,9 +4,12 @@ import cmodel.*;
 public class Controller{
 	
 	private Gamefield gamefield;
+	private Rules rule;
+	private boolean playerTurn = true;
 	
 	public Controller(int sizeOfMatrix){
 		gamefield = new Gamefield(sizeOfMatrix);
+		rule = new Rules();
 	}
 	public void printField(){
 		for (int i = 0; i < gamefield.getSizeOfGameField(); i++){
@@ -17,40 +20,20 @@ public class Controller{
 			}
 		}
 	}
+	
 	public void move(int xStart, int yStart, int xZiel, int yZiel){
 		Stone drawStone;
 		Stone changeStone;
 		drawStone = gamefield.getField(xStart, yStart).getCharakter();
 		changeStone = gamefield.getField(xZiel, yZiel).getCharakter();
-		if((xStart == xZiel && yStart == yZiel) 
-				|| (xStart != xZiel && yStart != yZiel)){ // Diagonales ziehen verboten
-			System.out.println("\nDiagonales ziehen nicht möglich!\n");
-		
-		} else if ((gamefield.getField(xZiel, yZiel).getOccupied() == 1) 
-				&& drawStone.getUnitSpecification() != 3){ // Feld nur für den König begehbar
-			System.out.println("\nSiegfeld/Thron!\n");
-
-		} else if ((changeStone.getUnitSpecification() != 0)){ // Zug nicht möglich, da Feld belegt
-			System.out.println("\nFeld belget!\n");	
-
-		} else {
-			if(drawStone.getAktive() == 1){
+		if(rule.yourTurn(playerTurn, gamefield, xStart, yStart)){
+			if(rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
 				gamefield.getField(xStart, yStart).setCharakter(changeStone);
 				gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
-				
-				// Schleife um die Reihenfolge der Spieler fest zu legen
-				for (int i = 0; i < gamefield.getSizeOfGameField(); i++){
-					for (int j = 0; j< gamefield.getSizeOfGameField(); j++){
-						if(gamefield.getField(i, j).getCharakter().getAktive() == 1){
-							gamefield.getField(i, j).getCharakter().setAktive(2);
-						} else if(gamefield.getField(i, j).getCharakter().getAktive() == 2){
-							gamefield.getField(i, j).getCharakter().setAktive(1);
-						}
-					}
-				}
-			} else
-			System.out.println("\nNicht am Zug!\n");
+				playerTurn = !playerTurn;
+			}
 		}
+
 	}
 	public boolean winGame(){
 		// Siegbedingung für den Verteidiger

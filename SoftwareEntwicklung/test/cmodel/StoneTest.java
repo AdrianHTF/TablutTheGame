@@ -38,17 +38,5 @@ public class StoneTest {
 		s0.setUnitSpecification(3);
 		assertEquals(3, s0.getUnitSpecification());
 	}
-	
-	@Test
-	public void testGetAktive(){
-		assertEquals(0, s0.getUnitSpecification());
-		assertEquals(1, s1.getAktive());
-		assertEquals(2, s3.getAktive());
-	}
-	
-	@Test
-	public void testSetAktive(){
-		s1.setAktive(0);
-		assertEquals(0, s1.getAktive());
-	}
+
 }
