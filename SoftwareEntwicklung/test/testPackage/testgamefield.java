@@ -7,7 +7,7 @@ public class testgamefield {
 		Gamefield gf = new Gamefield(3);
 		Gamefield gf2 = new Gamefield(9);
 		Gamefield gf3 = new Gamefield(12);
-		field[][] testF = new field[3][3];
+		Field[][] testF = new Field[3][3];
 		
 		gf.getField();
 		gf2.getField(1, 1);

@@ -1,12 +1,12 @@
 package cmodel;
 
-public class field {
+public class Field {
 	
 	private int occupied = 0;
 	private boolean victory = false;
-	private stone charakter = new stone(0);
+	private Stone charakter = new Stone(0);
 
-	public field(){
+	public Field(){
 		
 	}
 
@@ -26,18 +26,20 @@ public class field {
 		this.victory = victory;
 	}
 
-	public stone getCharakter() {
+	public Stone getCharakter() {
 		return charakter;
 	}
 
-	public void setCharakter(stone charakter) {
+	public void setCharakter(Stone charakter) {
 		this.charakter = charakter;
+		if(charakter.getUnitSpecification() != 0)
+			this.setOccupied(2);
 	}
 	
 	@Override
 	public String toString(){
 		String d = "_";
-		stone k = getCharakter();
+		Stone k = getCharakter();
 		
 		if (k.getUnitSpecification() == 1){
 			d = "A";

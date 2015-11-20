@@ -4,7 +4,7 @@ package cmodel;
  * @author waldemar brill && adrian fien
  *
  */
-public class stone {
+public class Stone {
 	
 	private int unitSpecification = 0;
 	private final int attack = 1;
@@ -17,7 +17,7 @@ public class stone {
 	 * (0 = attack; 1 = defense; 2 = king)
 	 * (attack = white; defense = black; king = purple)
 	 */
-	public stone(int pUnitSpecification){
+	public Stone(int pUnitSpecification){
 		if(pUnitSpecification == 0)
 			unitSpecification = 0;
 		else if(pUnitSpecification == 1){

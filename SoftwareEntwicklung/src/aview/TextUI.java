@@ -3,12 +3,12 @@ import bcontroller.*;
 
 import java.util.Scanner;;
 
-public class textUI {
-	private controller controller;
+public class TextUI {
+	private Controller controller;
 	public static int gameFieldSize = 0;
 	
-	public textUI(){
-		controller = new controller(gameFieldSize);
+	public TextUI(){
+		controller = new Controller(gameFieldSize);
 	}
 	
 	public static void main(String [] args){
@@ -29,7 +29,7 @@ public class textUI {
 				System.out.println("Falsche Eingabe!");
 		}
 		
-	    textUI ui = new textUI();
+	    TextUI ui = new TextUI();
 		ui.controller.printField();
 		
 		int xStart = 0;
@@ -42,13 +42,13 @@ public class textUI {
 			Scanner sc = new Scanner(System.in);
 				
 				if(sc.hasNextInt())
-					xStart = sc.nextInt();
+					xStart = sc.nextInt();	// Eingabe X-Position des Steins, der bewegt werden soll
+				if(sc.hasNextInt())			
+					yStart = sc.nextInt();	// Eingabe Y-Position des Steins, der bewegt werden soll
 				if(sc.hasNextInt())
-					yStart = sc.nextInt();
+					xZiel = sc.nextInt();	// Eingabe X-Position der Zielpostion
 				if(sc.hasNextInt())
-					xZiel = sc.nextInt();
-				if(sc.hasNextInt())
-					yZiel = sc.nextInt();
+					yZiel = sc.nextInt();	// Eingabe Y-Position der Zielpostion
 
 			ui.controller.move(xStart, yStart, xZiel, yZiel);
 			xStart = 0;

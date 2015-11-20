@@ -8,7 +8,7 @@ package cmodel;
  */
 public class Gamefield {
 
-	public static field[][] gamefield;
+	public static Field[][] gamefield;
 	private int sizeOfGameField = 1;
 	
 
@@ -21,11 +21,11 @@ public class Gamefield {
 			return;
 		}
 		
-		gamefield = new field[sizeOfGameField][sizeOfGameField];
+		gamefield = new Field[sizeOfGameField][sizeOfGameField];
 		for (int i = 0; i < sizeOfGameField; i++){
 			for (int j = 0; j < sizeOfGameField; j++){
-				gamefield[i][j] = new field();
-				gamefield[i][j].setCharakter(new stone(0));
+				gamefield[i][j] = new Field();
+				gamefield[i][j].setCharakter(new Stone(0));
 				gamefield[i][j].setOccupied(0);
 				gamefield[i][j].setVictory(false);
 			}
@@ -33,13 +33,13 @@ public class Gamefield {
 		setStandard();
 		setStartfield();
 	}
-	public field[][] getField(){
+	public Field[][] getField(){
 		return gamefield;
 	}
-	public field getField(int xAxis, int yAxis){
+	public Field getField(int xAxis, int yAxis){
 		return gamefield[xAxis][yAxis];
 	}
-	public void setField(field[][] f){
+	public void setField(Field[][] f){
 		gamefield = f;
 	}
 	public int getSizeOfGameField(){
@@ -63,7 +63,7 @@ public class Gamefield {
 		
 		gamefield[sizeOfGameField/2][sizeOfGameField/2].setOccupied(1);
 		
-		gamefield[sizeOfGameField/2][sizeOfGameField/2].setCharakter(new stone(3));
+		gamefield[sizeOfGameField/2][sizeOfGameField/2].setCharakter(new Stone(3));
 	}
 	public void setStartfield(){
 		int max = sizeOfGameField-1;
@@ -71,25 +71,25 @@ public class Gamefield {
 		int min = 0;
 		//----------ATK-----------------
 		if (sizeOfGameField == 9){
-			gamefield[middle][min].setCharakter(new stone(1));
-			gamefield[middle-1][min].setCharakter(new stone(1));
-			gamefield[middle+1][min].setCharakter(new stone(1));
-			gamefield[middle][min+1].setCharakter(new stone(1));
+			gamefield[middle][min].setCharakter(new Stone(1));
+			gamefield[middle-1][min].setCharakter(new Stone(1));
+			gamefield[middle+1][min].setCharakter(new Stone(1));
+			gamefield[middle][min+1].setCharakter(new Stone(1));
 			
-			gamefield[max][middle].setCharakter(new stone(1));
-			gamefield[max][middle-1].setCharakter(new stone(1));
-			gamefield[max][middle+1].setCharakter(new stone(1));
-			gamefield[max-1][middle].setCharakter(new stone(1));
+			gamefield[max][middle].setCharakter(new Stone(1));
+			gamefield[max][middle-1].setCharakter(new Stone(1));
+			gamefield[max][middle+1].setCharakter(new Stone(1));
+			gamefield[max-1][middle].setCharakter(new Stone(1));
 					
-			gamefield[middle][max].setCharakter(new stone(1));
-			gamefield[middle-1][max].setCharakter(new stone(1));
-			gamefield[middle+1][max].setCharakter(new stone(1));
-			gamefield[middle][max-1].setCharakter(new stone(1));
+			gamefield[middle][max].setCharakter(new Stone(1));
+			gamefield[middle-1][max].setCharakter(new Stone(1));
+			gamefield[middle+1][max].setCharakter(new Stone(1));
+			gamefield[middle][max-1].setCharakter(new Stone(1));
 			
-			gamefield[min][middle].setCharakter(new stone(1));
-			gamefield[min][middle-1].setCharakter(new stone(1));
-			gamefield[min][middle+1].setCharakter(new stone(1));
-			gamefield[min+1][middle].setCharakter(new stone(1));
+			gamefield[min][middle].setCharakter(new Stone(1));
+			gamefield[min][middle-1].setCharakter(new Stone(1));
+			gamefield[min][middle+1].setCharakter(new Stone(1));
+			gamefield[min+1][middle].setCharakter(new Stone(1));
 		}else{
 			placeAtk();
 		}
@@ -97,8 +97,8 @@ public class Gamefield {
 		if (sizeOfGameField == 9){
 			for (int i = -2; i < 3; i++){
 				if (i != 0){
-					gamefield[middle+i][middle].setCharakter(new stone(2));
-					gamefield[middle][middle+i].setCharakter(new stone(2));
+					gamefield[middle+i][middle].setCharakter(new Stone(2));
+					gamefield[middle][middle+i].setCharakter(new Stone(2));
 				}
 			}
 		}
@@ -106,14 +106,14 @@ public class Gamefield {
 		if (sizeOfGameField == 11){
 			for (int i = -2; i < 3; i++){
 				if (i != 0){
-					gamefield[middle+i][middle].setCharakter(new stone(2));
-					gamefield[middle][middle+i].setCharakter(new stone(2));
+					gamefield[middle+i][middle].setCharakter(new Stone(2));
+					gamefield[middle][middle+i].setCharakter(new Stone(2));
 				}
 			}
 			for (int i = -1; i < 2; i++){
 				if (i != 0){
-					gamefield[middle+i][middle+i].setCharakter(new stone(2));
-					gamefield[middle-i][middle+i].setCharakter(new stone(2));
+					gamefield[middle+i][middle+i].setCharakter(new Stone(2));
+					gamefield[middle-i][middle+i].setCharakter(new Stone(2));
 				}
 			}
 		}
@@ -121,8 +121,8 @@ public class Gamefield {
 		if (sizeOfGameField == 13){
 			for (int i = -3; i < 4; i++){
 				if (i != 0){
-					gamefield[middle+i][middle].setCharakter(new stone(2));
-					gamefield[middle][middle+i].setCharakter(new stone(2));
+					gamefield[middle+i][middle].setCharakter(new Stone(2));
+					gamefield[middle][middle+i].setCharakter(new Stone(2));
 				}
 			}
 		}
@@ -133,33 +133,33 @@ public class Gamefield {
 		int middle = max/2;
 		int min = 0;
 		
-		gamefield[middle][min].setCharakter(new stone(1));
-		gamefield[middle-1][min].setCharakter(new stone(1));
-		gamefield[middle+1][min].setCharakter(new stone(1));
-		gamefield[middle-2][min].setCharakter(new stone(1));
-		gamefield[middle+2][min].setCharakter(new stone(1));
-		gamefield[middle][min+1].setCharakter(new stone(1));
+		gamefield[middle][min].setCharakter(new Stone(1));
+		gamefield[middle-1][min].setCharakter(new Stone(1));
+		gamefield[middle+1][min].setCharakter(new Stone(1));
+		gamefield[middle-2][min].setCharakter(new Stone(1));
+		gamefield[middle+2][min].setCharakter(new Stone(1));
+		gamefield[middle][min+1].setCharakter(new Stone(1));
 		
-		gamefield[max][middle].setCharakter(new stone(1));
-		gamefield[max][middle-1].setCharakter(new stone(1));
-		gamefield[max][middle+1].setCharakter(new stone(1));
-		gamefield[max][middle-2].setCharakter(new stone(1));
-		gamefield[max][middle+2].setCharakter(new stone(1));
-		gamefield[max-1][middle].setCharakter(new stone(1));
+		gamefield[max][middle].setCharakter(new Stone(1));
+		gamefield[max][middle-1].setCharakter(new Stone(1));
+		gamefield[max][middle+1].setCharakter(new Stone(1));
+		gamefield[max][middle-2].setCharakter(new Stone(1));
+		gamefield[max][middle+2].setCharakter(new Stone(1));
+		gamefield[max-1][middle].setCharakter(new Stone(1));
 		
-		gamefield[middle][max].setCharakter(new stone(1));
-		gamefield[middle-1][max].setCharakter(new stone(1));
-		gamefield[middle+1][max].setCharakter(new stone(1));
-		gamefield[middle-2][max].setCharakter(new stone(1));
-		gamefield[middle+2][max].setCharakter(new stone(1));
-		gamefield[middle][max-1].setCharakter(new stone(1));
+		gamefield[middle][max].setCharakter(new Stone(1));
+		gamefield[middle-1][max].setCharakter(new Stone(1));
+		gamefield[middle+1][max].setCharakter(new Stone(1));
+		gamefield[middle-2][max].setCharakter(new Stone(1));
+		gamefield[middle+2][max].setCharakter(new Stone(1));
+		gamefield[middle][max-1].setCharakter(new Stone(1));
 		
-		gamefield[min][middle].setCharakter(new stone(1));
-		gamefield[min][middle-1].setCharakter(new stone(1));
-		gamefield[min][middle+1].setCharakter(new stone(1));
-		gamefield[min][middle-2].setCharakter(new stone(1));
-		gamefield[min][middle+2].setCharakter(new stone(1));
-		gamefield[min+1][middle].setCharakter(new stone(1));
+		gamefield[min][middle].setCharakter(new Stone(1));
+		gamefield[min][middle-1].setCharakter(new Stone(1));
+		gamefield[min][middle+1].setCharakter(new Stone(1));
+		gamefield[min][middle-2].setCharakter(new Stone(1));
+		gamefield[min][middle+2].setCharakter(new Stone(1));
+		gamefield[min+1][middle].setCharakter(new Stone(1));
 	}
 
 }
