@@ -20,7 +20,9 @@ public class FieldTest {
 		f4 = new Field();
 		f5 = new Field();
 		
-		f3.setCharakter(new Stone(1));
+		f1.setCharakter(new Stone(0));
+		f2.setCharakter(new Stone(1));
+		f3.setCharakter(new Stone(2));
 		f4.setCharakter(new Stone(3));
 		f5.setVictory(true);
 	}
@@ -58,15 +60,6 @@ public class FieldTest {
 	public void testSetCharakter(){
 		f2.setCharakter(new Stone(2));
 		assertNotNull(f2.getCharakter());
-	}
-	
-	@Test
-	public void testToString(){
-		assertSame(" _ ", f1.toString());
-		assertEquals(" D ", f2.toString());
-		assertEquals(" A ", f3.toString());
-		assertEquals(" K ", f4.toString());
-		assertEquals(" X ", f5.toString());
 	}
 
 }
