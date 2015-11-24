@@ -94,8 +94,14 @@ public class Gamefield {
 			placeAtk();
 		}
 		//---------------DEF---------------
-		if (sizeOfGameField == 9 || sizeOfGameField == 11){
-			for (int i = -2; i < 3; i++){
+		if (sizeOfGameField == 9 || sizeOfGameField == 11 || sizeOfGameField == 13){
+			int x = -2;
+			int z = 3;
+			if(sizeOfGameField == 13){
+				x = -3;
+				z = 4;
+			}
+			for (int i = x; i < z; i++){
 				if (i != 0){
 					mainGamefield[middle+i][middle].setCharakter(new Stone(2));
 					mainGamefield[middle][middle+i].setCharakter(new Stone(2));
@@ -107,15 +113,6 @@ public class Gamefield {
 						mainGamefield[middle+i][middle+i].setCharakter(new Stone(2));
 						mainGamefield[middle-i][middle+i].setCharakter(new Stone(2));
 					}
-				}
-			}
-		}
-		
-		if (sizeOfGameField == 13){
-			for (int i = -3; i < 4; i++){
-				if (i != 0){
-					mainGamefield[middle+i][middle].setCharakter(new Stone(2));
-					mainGamefield[middle][middle+i].setCharakter(new Stone(2));
 				}
 			}
 		}
