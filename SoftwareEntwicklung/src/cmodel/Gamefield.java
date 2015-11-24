@@ -113,11 +113,9 @@ public class Gamefield {
 				}
 			}
 			if (sizeOfGameField == 11){
-				for (int i = -1; i < 2; i++){
-					if (i != 0){
-						mainGamefield[middle+i][middle+i].setCharakter(new Stone(2));
-						mainGamefield[middle-i][middle+i].setCharakter(new Stone(2));
-					}
+				for (int i = -1; i < 2 && i == -1 ; i++){
+					mainGamefield[middle+i][middle+i].setCharakter(new Stone(2));
+					mainGamefield[middle-i][middle+i].setCharakter(new Stone(2));
 				}
 			}
 		}
