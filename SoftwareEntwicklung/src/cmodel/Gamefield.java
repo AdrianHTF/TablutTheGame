@@ -31,7 +31,8 @@ public class Gamefield {
 			}
 		}
 		setStandard();
-		setStartfield();
+		setStartfieldAttack();
+		setStartfieldDefense();
 	}
 	public Field[][] getGameField(){
 		return mainGamefield;
@@ -65,7 +66,7 @@ public class Gamefield {
 		
 		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setCharakter(new Stone(3));
 	}
-	public void setStartfield(){
+	public void setStartfieldAttack(){
 		int max = sizeOfGameField-1;
 		int middle = max/2;
 		int min = 0;
@@ -93,7 +94,11 @@ public class Gamefield {
 		}else{
 			placeAtk();
 		}
+	}
+	public void setStartfieldDefense(){
 		//---------------DEF---------------
+		int max = sizeOfGameField-1;
+		int middle = max/2;
 		if (sizeOfGameField == 9 || sizeOfGameField == 11 || sizeOfGameField == 13){
 			int x = -2;
 			int z = 3;
