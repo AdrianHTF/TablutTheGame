@@ -45,7 +45,7 @@ public class ControllerTest {
 	
 	@Test
 	public void testWinGame(){
-		assertTrue(c3.winGame());
-		assertFalse(c2.winGame());
+		assertFalse(c3.winGame());
+		assertTrue(c2.winGame());
 	}
 }
