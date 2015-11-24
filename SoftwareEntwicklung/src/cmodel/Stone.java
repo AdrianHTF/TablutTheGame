@@ -1,14 +1,10 @@
 package cmodel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  * 
  * @author waldemar brill && adrian fien
  *
  */
 public class Stone {
-	Logger logger;
-	Level WARNING;
 	private int unitSpecification = 0;
 	private static final int attack = 1;
 	private static final int defense = 2;
