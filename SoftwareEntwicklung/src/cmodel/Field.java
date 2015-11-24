@@ -47,7 +47,7 @@ public class Field {
 			d = "D";
 		}else if (k.getUnitSpecification() == 3){
 			d = "K";
-		}else if (isVictory() == true){
+		}else if (isVictory()){
 			d = "X";
 		}
 		StringBuilder s = new StringBuilder();

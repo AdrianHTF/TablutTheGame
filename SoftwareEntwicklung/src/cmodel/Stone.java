@@ -1,15 +1,18 @@
 package cmodel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * 
  * @author waldemar brill && adrian fien
  *
  */
 public class Stone {
-	
+	Logger logger;
+	Level WARNING;
 	private int unitSpecification = 0;
-	private final int attack = 1;
-	private final int defense = 2;
-	private final int king = 3;
+	private static final int attack = 1;
+	private static final int defense = 2;
+	private static final int king = 3;
 	/**
 	 * 
 	 * @param pUnitSpecification 
@@ -31,6 +34,7 @@ public class Stone {
 		else
 			System.err.println("Unit must be 1, 2 or 3");
 	}
+	
 	public int getUnitSpecification() {
 		return unitSpecification;
 	}

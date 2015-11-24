@@ -25,12 +25,11 @@ public class Controller{
 		Stone changeStone;
 		drawStone = gamefield.getField(xStart, yStart).getCharakter();
 		changeStone = gamefield.getField(xZiel, yZiel).getCharakter();
-		if(rule.yourTurn(playerTurn, gamefield, xStart, yStart)){
-			if(rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
-				gamefield.getField(xStart, yStart).setCharakter(changeStone);
-				gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
-				playerTurn = !playerTurn;
-			}
+		if(rule.yourTurn(playerTurn, gamefield, xStart, yStart)
+				&& rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
+			gamefield.getField(xStart, yStart).setCharakter(changeStone);
+			gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
+			playerTurn = !playerTurn;
 		}
 
 	}
@@ -41,9 +40,9 @@ public class Controller{
 				|| (gamefield.getField(gamefield.getSizeOfGameField()-1, 0).getCharakter().getUnitSpecification() == 3)
 				|| (gamefield.getField(0, 0).getCharakter().getUnitSpecification() == 3)){
 			System.out.println("\nVerteidiger hat gewonnen!\n");
-			return true;
+			return false;
 			
 		} else
-		return false;
+		return true;
 	}
 }

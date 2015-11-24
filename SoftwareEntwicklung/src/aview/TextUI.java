@@ -48,7 +48,7 @@ public class TextUI {
 		int xZiel = 0;
 		int yZiel = 0;
 		
-		while(ui.controller.winGame() != true){
+		while(ui.controller.winGame()){
 			System.out.println("\n\nBitte geben sie ihren Spielzug an:\n");
 			Scanner sc = new Scanner(System.in);
 				
