@@ -33,6 +33,37 @@ public class Controller{
 		}
 
 	}
+	
+	public void hitStoneHorizontal(int xAxis, int yAxis){
+		if(rule.hitHorizontalRight(gamefield, xAxis, yAxis)){
+			gamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+		} else if(rule.hitHorizontalLeft(gamefield, xAxis, yAxis)){
+			gamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+		}
+	}
+	
+	public void hitStoneHorizontalDouble(int xAxis, int yAxis){
+		if(rule.hitHorizontalRight(gamefield, xAxis, yAxis) && rule.hitHorizontalLeft(gamefield, xAxis, yAxis)){
+			gamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+			gamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+		}
+	}
+	
+	public void hitStoneVertical(int xAxis, int yAxis){
+		if(rule.hitVerticalUpper(gamefield, xAxis, yAxis)){
+			gamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+		} else if(rule.hitVerticalLower(gamefield, xAxis, yAxis)){
+			gamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+		}
+	}
+	
+	public void hitStoneVerticalDouble(int xAxis, int yAxis){
+		if(rule.hitVerticalLower(gamefield, xAxis, yAxis) && rule.hitVerticalUpper(gamefield, xAxis, yAxis)){
+			gamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+			gamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+		}
+	}
+	
 	public boolean winGame(){
 		// Siegbedingung für den Verteidiger
 		if((gamefield.getField(gamefield.getSizeOfGameField()-1, gamefield.getSizeOfGameField()-1).getCharakter().getUnitSpecification() == 3)

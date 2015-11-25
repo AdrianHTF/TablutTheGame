@@ -62,6 +62,10 @@ public class TextUI {
 					yZiel = sc.nextInt();	// Eingabe Y-Position der Zielpostion
 
 			ui.controller.move(xStart, yStart, xZiel, yZiel);
+			ui.controller.hitStoneVerticalDouble(xZiel, yZiel);
+			ui.controller.hitStoneHorizontalDouble(xZiel, yZiel);
+			ui.controller.hitStoneVertical(xZiel, yZiel);
+			ui.controller.hitStoneHorizontal(xZiel, yZiel);
 			xStart = 0;
 			yStart = 0;
 			xZiel = 0;
