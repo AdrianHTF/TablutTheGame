@@ -48,8 +48,8 @@ public class Rules {
 	
 	public boolean hitHorizontalLeft(Gamefield gamefield, int xAxis, int yAxis){
 		if(gamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification() != 0 
-				&& (((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
-				&& (gamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))){
+				&& ((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
+				&& (gamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))){
 			return true;
 		}
 		return false;
@@ -57,8 +57,8 @@ public class Rules {
 	
 	public boolean hitVerticalUpper(Gamefield gamefield, int xAxis, int yAxis){
 		if(gamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
-				&& (((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
-				&& (gamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))){
+				&& ((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
+				&& (gamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))){
 			return true;
 		}
 		return false;
