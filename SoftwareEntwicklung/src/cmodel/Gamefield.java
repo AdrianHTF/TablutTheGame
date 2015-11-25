@@ -66,6 +66,7 @@ public class Gamefield {
 		
 		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setCharakter(new Stone(3));
 	}
+	
 	public void setStartfieldAttack(){
 		int max = sizeOfGameField-1;
 		int middle = max/2;
@@ -99,21 +100,22 @@ public class Gamefield {
 		//---------------DEF---------------
 		int max = sizeOfGameField-1;
 		int middle = max/2;
+		int[] forLoopIteratField = {-3, -2, -1, 1, 2, 3 , 4};
+		int firstElementInForLoopA = 2;
+		int firstElementinForLoopB = 1;
+		int stopForLoopWaiter = 3;
 		if (sizeOfGameField == 9 || sizeOfGameField == 11 || sizeOfGameField == 13){
-			int x = -2;
-			int z = 3;
+
 			if(sizeOfGameField == 13){
-				x = -3;
-				z = 4;
+				firstElementinForLoopB = 0;
+				stopForLoopWaiter = 4;
 			}
-			for (int i = x; i < z; i++){
-				if (i != 0){
-					mainGamefield[middle+i][middle].setCharakter(new Stone(2));
-					mainGamefield[middle][middle+i].setCharakter(new Stone(2));
-				}
+			for (int i = forLoopIteratField[firstElementinForLoopB]; i < stopForLoopWaiter; i = forLoopIteratField[firstElementinForLoopB++]){
+				mainGamefield[middle+i][middle].setCharakter(new Stone(2));
+				mainGamefield[middle][middle+i].setCharakter(new Stone(2));
 			}
 			if (sizeOfGameField == 11){
-				for (int i = -1; i < 2 && i == -1 ; i++){
+				for (int i = forLoopIteratField[2]; i < 2 ; i = forLoopIteratField[firstElementInForLoopA++]){
 					mainGamefield[middle+i][middle+i].setCharakter(new Stone(2));
 					mainGamefield[middle-i][middle+i].setCharakter(new Stone(2));
 				}
