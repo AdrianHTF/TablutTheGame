@@ -9,7 +9,7 @@ public class Rules {
 		
 		if((xStart == xZiel && yStart == yZiel) 
 			|| (xStart != xZiel && yStart != yZiel) 
-			|| (gamefield.getField(xZiel, yZiel).getOccupied() == 1) 
+			|| (gamefield.getField(xZiel, yZiel).getOccupied() == 1 && drawStone.getIsKing() == false) 
 			&& (drawStone.getUnitSpecification() != 3) 
 			|| (changeStone.getUnitSpecification() != 0)){
 				return false;
@@ -37,57 +37,18 @@ public class Rules {
 		return false;
 	}
 	
-	public boolean hitHorizontalRight(Gamefield gamefield, int xAxis, int yAxis){
-		if((gamefield.getField(xAxis + 1 , yAxis).getCharakter().getUnitSpecification() != 0)
-			&& ((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
-			&& (gamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))){
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hitHorizontalLeft(Gamefield gamefield, int xAxis, int yAxis){
-		if(gamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification() != 0 
-				&& ((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
-				&& (gamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))){
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hitVerticalUpper(Gamefield gamefield, int xAxis, int yAxis){
-		if(gamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
-				&& ((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
-				&& (gamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))){
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hitVerticalLower(Gamefield gamefield, int xAxis, int yAxis){
-		if((gamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification() != 0)
-				&& ((gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != gamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
-				&& (gamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() == gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))){
-				return true;
-			}
-		return false;
-	}
-	
-	public boolean hitKing(){
-		return false;
-	}
-	
+
 	public boolean yMove(Gamefield gamefield,
 			int xStart, int yStart, int yZiel){
 		if(yStart < yZiel){
-			for(int i = yStart+1; i <= yZiel; i++){
+			for(int i = yStart + 1; i <= yZiel; i++){
 				if (gamefield.getField(xStart, i).getCharakter().getUnitSpecification() > 0){
 					return false;
 				}
 			}
 		} else{
-			for(int j = yStart-1; j >= yZiel; j--){
-				if (gamefield.getField(xStart, j).getCharakter().getUnitSpecification() > 0){
+			for(int i = yStart - 1; i >= yZiel; i--){
+				if (gamefield.getField(xStart, i).getCharakter().getUnitSpecification() > 0){
 					return false;
 				}
 			}
@@ -112,4 +73,6 @@ public class Rules {
 		}
 		return true;
 	}
+	
+
 }

@@ -57,7 +57,7 @@ public class GamefieldTest {
 	@Test
 	public void testSetStartfield(){
 		g1.setStartfieldAttack();
-		assertEquals(3, g1.getField(g1.getSizeOfGameField()/2, g1.getSizeOfGameField()/2).getCharakter().getUnitSpecification());
+		assertTrue(g1.getField(g1.getSizeOfGameField()/2, g1.getSizeOfGameField()/2).getCharakter().getIsKing());
 	}
 	
 	@Test

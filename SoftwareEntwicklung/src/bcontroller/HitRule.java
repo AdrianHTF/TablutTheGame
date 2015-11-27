@@ -1,0 +1,142 @@
+package bcontroller;
+import cmodel.*;
+
+public class HitRule {
+	
+	
+	private Gamefield changedGamefield;
+	private int xAxis;
+	private int yAxis;
+	
+	public HitRule(){
+		
+	}
+	
+	public Gamefield hit(Gamefield gamefield, int xAxis, int yAxis){
+		this.xAxis = xAxis;
+		this.yAxis = yAxis;
+		changedGamefield = gamefield;
+		int x = changedGamefield.getField(xAxis, yAxis).getNoHit();
+		switch(x){
+			case 0:
+				hitable0();
+				break;
+			case 1:
+				hitable1();
+				break;
+			case 2:
+				hitable2();
+				break;
+			case 3:
+				hitable3();
+				break;
+			case 4:
+				hitable4();
+				break;
+			case 5:
+				hitable5();
+				break;
+			case 6:
+				hitable6();
+				break;
+			case 7:
+				hitable7();
+				break;
+			case 8:
+				hitable8();
+				break;
+			default:
+				break;
+		}
+		return changedGamefield;
+		
+	}
+
+	private void hitable0(){
+		hitTop();
+		hitRight();
+		hitLeft();
+		hitBott();
+	}
+	private void hitable1(){
+		hitRight();
+		hitLeft();
+		hitBott();
+	}
+	private void hitable2(){
+		hitLeft();
+		hitBott();
+	}
+	private void hitable3(){
+		hitTop();
+		hitLeft();
+		hitBott();
+	}
+	private void hitable4(){
+		hitTop();
+		hitLeft();
+	}
+	private void hitable5(){
+		hitTop();
+		hitRight();
+		hitLeft();
+	}
+	private void hitable6(){
+		hitTop();
+		hitRight();
+	}
+	private void hitable7(){
+		hitTop();
+		hitRight();
+		hitBott();
+	}
+	private void hitable8(){
+		hitRight();
+		hitBott();
+	}
+	
+	private void hitTop(){
+		if(changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing()){
+			hitKing();
+			return;
+		}
+		if(changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
+				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
+				&& (changedGamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
+		changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+	}
+	private void hitRight(){
+		if(changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing()){
+			hitKing();
+			return;
+		}
+		if((changedGamefield.getField(xAxis + 1 , yAxis).getCharakter().getUnitSpecification() != 0)
+				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
+				&& (changedGamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
+			changedGamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+	}
+	private void hitLeft(){
+		if(changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing()){
+			hitKing();
+			return;
+		}
+		if((changedGamefield.getField(xAxis - 1 , yAxis).getCharakter().getUnitSpecification() != 0)
+				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
+				&& (changedGamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
+			changedGamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+	}
+	private void hitBott(){
+		if(changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing()){
+			hitKing();
+			return;
+		}
+		if(changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification() != 0 
+				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
+				&& (changedGamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
+			changedGamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+	}
+	
+	private void hitKing(){
+		
+	}
+}

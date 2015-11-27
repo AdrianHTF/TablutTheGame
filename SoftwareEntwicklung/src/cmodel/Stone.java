@@ -8,7 +8,7 @@ public class Stone {
 	private int unitSpecification = 0;
 	private static final int ATTACK = 1;
 	private static final int DEFENSE = 2;
-	private static final int KING = 3;
+	private boolean isKing = false;
 	/**
 	 * 
 	 * @param pUnitSpecification 
@@ -25,7 +25,8 @@ public class Stone {
 			unitSpecification = DEFENSE;
 		}
 		else if(pUnitSpecification == 3){
-			unitSpecification = KING;
+			unitSpecification = DEFENSE;
+			isKing = true;
 		}
 		else
 			System.err.println("Unit must be 1, 2 or 3");
@@ -36,6 +37,12 @@ public class Stone {
 	}
 	public void setUnitSpecification(int unitSpecification) {
 		this.unitSpecification = unitSpecification;
+	}
+	public boolean getIsKing(){
+		return isKing;
+	}
+	public void setIsKing(boolean isKing){
+		this.isKing = isKing;
 	}
 	
 }

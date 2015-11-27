@@ -29,7 +29,7 @@ public class StoneTest {
 		assertEquals(0, s0.getUnitSpecification());
 		assertEquals(1, s1.getUnitSpecification());
 		assertEquals(2, s2.getUnitSpecification());
-		assertEquals(3, s3.getUnitSpecification());
+		assertTrue(s3.getIsKing());
 		assertEquals(0, s4.getUnitSpecification());
 	}
 	
@@ -37,6 +37,20 @@ public class StoneTest {
 	public void testSetUnitSpecification(){
 		s0.setUnitSpecification(3);
 		assertEquals(3, s0.getUnitSpecification());
+	}
+	
+	@Test
+	public void testGetIsKing(){
+		assertFalse(s0.getIsKing());
+		assertTrue(s3.getIsKing());
+	}
+	
+	@Test
+	public void testSetIsKing(){
+		s4.setIsKing(false);
+		assertFalse(s4.getIsKing());
+		s4.setIsKing(true);
+		assertTrue(s4.getIsKing());
 	}
 
 }

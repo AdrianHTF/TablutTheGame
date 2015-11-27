@@ -1,5 +1,7 @@
 package cmodel;
 
+import java.util.SimpleTimeZone;
+
 /**
  * 
  * @author adrian fien & waldemar brill
@@ -33,6 +35,14 @@ public class Gamefield {
 		setStandard();
 		setStartfieldAttack();
 		setStartfieldDefense();
+		setHitAble1();
+		setHitAble2();
+		setHitAble3();
+		setHitAble4();
+		setHitAble5();
+		setHitAble6();
+		setHitAble7();
+		setHitAble8();
 	}
 	public Field[][] getGameField(){
 		return mainGamefield;
@@ -65,6 +75,62 @@ public class Gamefield {
 		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setOccupied(1);
 		
 		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setCharakter(new Stone(3));
+	}
+	
+	public void setHitAble1(){
+		for(int i = 2; i < sizeOfGameField - 2; i++){
+			mainGamefield[i][0].setNoHit(1);
+			mainGamefield[i][1].setNoHit(1);
+		}
+	}
+	
+	public void setHitAble2(){
+		mainGamefield[sizeOfGameField - 2][0].setNoHit(2);
+		mainGamefield[sizeOfGameField - 2][1].setNoHit(2);
+		mainGamefield[sizeOfGameField - 1][1].setNoHit(2);
+		mainGamefield[sizeOfGameField - 1][0].setNoHit(2);
+	}
+	
+	public void setHitAble3(){
+		for(int i = 2; i < sizeOfGameField - 2; i++){
+			mainGamefield[sizeOfGameField - 1][i].setNoHit(3);
+			mainGamefield[sizeOfGameField - 2][i].setNoHit(3);
+		}
+	}
+	
+	public void setHitAble4(){
+		mainGamefield[sizeOfGameField - 1][sizeOfGameField - 2].setNoHit(4);
+		mainGamefield[sizeOfGameField - 2][sizeOfGameField - 2].setNoHit(4);
+		mainGamefield[sizeOfGameField - 2][sizeOfGameField - 1].setNoHit(4);
+		mainGamefield[sizeOfGameField - 1][sizeOfGameField - 1].setNoHit(4);
+	}
+	
+	public void setHitAble5(){
+		for(int i = 2; i < sizeOfGameField - 2; i++){
+			mainGamefield[i][sizeOfGameField - 1].setNoHit(5);
+			mainGamefield[i][sizeOfGameField - 2].setNoHit(5);
+		}
+	}
+	
+	public void setHitAble6(){
+		mainGamefield[1][sizeOfGameField - 1].setNoHit(6);
+		mainGamefield[1][sizeOfGameField - 2].setNoHit(6);
+		mainGamefield[0][sizeOfGameField - 2].setNoHit(6);
+		mainGamefield[0][sizeOfGameField - 1].setNoHit(6);
+	}
+	
+	public void setHitAble7(){
+		for(int i = 2; i < sizeOfGameField - 2; i++){
+			mainGamefield[0][i].setNoHit(7);
+			mainGamefield[1][i].setNoHit(7);
+		}
+	}
+	
+	public void setHitAble8(){
+		mainGamefield[0][1].setNoHit(8);
+		mainGamefield[1][1].setNoHit(8);
+		mainGamefield[1][0].setNoHit(8);
+		mainGamefield[0][0].setNoHit(8);
 	}
 	
 	public void setStartfieldAttack(){

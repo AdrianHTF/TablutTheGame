@@ -5,6 +5,17 @@ public class Field {
 	private int occupied = 0;
 	private boolean victory = false;
 	private Stone charakter = new Stone(0);
+	
+	// 0 = every where hit able
+	// 1 = no top hit
+	// 2 = no top right hit
+	// 3 = no right hit
+	// 4 = no right bott hit
+	// 5 = no bott hit
+	// 6 = no bott left hit
+	// 7 = no left hit
+	// 8 = no left top hit
+	private int noHit = 0;
 
 	public Field(){
 		
@@ -25,6 +36,14 @@ public class Field {
 	public void setVictory(boolean victory) {
 		this.victory = victory;
 	}
+	
+	public int getNoHit(){
+		return noHit;
+	}
+	
+	public void setNoHit(int noHit){
+		this.noHit = noHit;
+	}
 
 	public Stone getCharakter() {
 		return charakter;
@@ -43,10 +62,10 @@ public class Field {
 		
 		if (k.getUnitSpecification() == 1){
 			d = "A";
+		}else if (k.getIsKing()){
+			d = "K";
 		}else if (k.getUnitSpecification() == 2){
 			d = "D";
-		}else if (k.getUnitSpecification() == 3){
-			d = "K";
 		}else if (isVictory()){
 			d = "X";
 		}
