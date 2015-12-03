@@ -9,7 +9,7 @@ public class Rules {
 		
 		if((xStart == xZiel && yStart == yZiel) 
 			|| (xStart != xZiel && yStart != yZiel) 
-			|| (gamefield.getField(xZiel, yZiel).getOccupied() == 1 && drawStone.getIsKing() == false) 
+			|| (gamefield.getField(xZiel, yZiel).getOccupied() == 1 && !drawStone.getIsKing()) 
 			&& (drawStone.getUnitSpecification() != 3) 
 			|| (changeStone.getUnitSpecification() != 0)){
 				return false;

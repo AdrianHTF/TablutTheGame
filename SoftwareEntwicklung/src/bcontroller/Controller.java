@@ -8,11 +8,14 @@ public class Controller{
 	private Rules rule;
 	private HitRule hitrule;
 	private boolean playerTurn = true;
+	private boolean winGameAttack = false;
+	private HitRuleKing hrk;
 	
 	public Controller(int sizeOfMatrix){
 		gamefield = new Gamefield(sizeOfMatrix);
 		rule = new Rules();
 		hitrule = new HitRule();
+		hrk = new HitRuleKing();
 	}
 		
 	public void printField(){
@@ -33,6 +36,7 @@ public class Controller{
 			gamefield.getField(xStart, yStart).setCharakter(changeStone);
 			gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
+//			winGameAttack = hrk;
 			playerTurn = !playerTurn;
 		}
 	}
@@ -49,5 +53,20 @@ public class Controller{
 			
 		} else
 		return true;
+	}
+	
+	public boolean winGameAttack(){
+		if(winGameAttack){
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean getWinGameAttack(){
+		return winGameAttack;
+	}
+	
+	public void setWinGameAttack(boolean winGameAttack){
+		this.winGameAttack = winGameAttack;
 	}
 }
