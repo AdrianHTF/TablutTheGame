@@ -22,9 +22,10 @@ public class HitRule {
 		if(!(xAxis == 0 || yAxis == 0 
 				|| xAxis == changedGamefield.getSizeOfGameField() - 1
 				|| yAxis == changedGamefield.getSizeOfGameField() - 1)){
+			
 			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis - 1));
-			setKingVictory(hk.kingHit(changedGamefield, xAxis - 1, yAxis));
 			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis + 1));
+			setKingVictory(hk.kingHit(changedGamefield, xAxis - 1, yAxis));
 			setKingVictory(hk.kingHit(changedGamefield, xAxis + 1, yAxis));
 		}
 					
