@@ -7,6 +7,8 @@ public class HitRule {
 	private Gamefield changedGamefield;
 	private int xAxis;
 	private int yAxis;
+	private boolean kingVictory = false;
+	private HitRuleKing hk = new HitRuleKing(); 
 	
 	public HitRule(){
 		
@@ -97,32 +99,64 @@ public class HitRule {
 	}
 	
 	private void hitTop(){
-		if(changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
-				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
-				&& (changedGamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
-		changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+		if(changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing())
+			kingVictory = hk.kingHit(xAxis, yAxis - 1);
+		else {
+			if((changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
+					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
+							!= changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
+							&& changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing() == false) 
+					&& (changedGamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() 
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+			changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+		}
 	}
 	private void hitRight(){
-
-		if((changedGamefield.getField(xAxis + 1 , yAxis).getCharakter().getUnitSpecification() != 0)
-				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
-				&& (changedGamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
-			changedGamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+		if(changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing())
+			kingVictory = hk.kingHit(xAxis + 1, yAxis);
+		else{
+			if((changedGamefield.getField(xAxis + 1 , yAxis).getCharakter().getUnitSpecification() != 0
+					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
+							!= changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
+					&& changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing() == false)
+					&& (changedGamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() 
+						== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+				changedGamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+		}
 	}
 	private void hitLeft(){
-
-		if((changedGamefield.getField(xAxis - 1 , yAxis).getCharakter().getUnitSpecification() != 0)
-				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
-				&& (changedGamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
-			changedGamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+		if(changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing())
+			kingVictory = hk.kingHit(xAxis - 1, yAxis);
+		else {
+			if((changedGamefield.getField(xAxis - 1 , yAxis).getCharakter().getUnitSpecification() != 0
+					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
+							!= changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
+							&& changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing() == false)
+					&& (changedGamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification()
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+				changedGamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+		}
 	}
 	private void hitBott(){
-
-		if(changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification() != 0 
-				&& ((changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() != changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
-				&& (changedGamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() == changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())))
-			changedGamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+		if(changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing())
+			kingVictory = hk.kingHit(xAxis, yAxis + 1);
+		else{
+			if((changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification() != 0 
+					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
+							!= changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
+							&& changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing() == false)
+					&& (changedGamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() 
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+				changedGamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+		}
 	}
 	
+	public boolean getKingVictory(){
+		return kingVictory;
+	}
+	
+	public void setKingVictory(boolean kingVictory){
+		this.kingVictory = kingVictory;
+	}
 
 }

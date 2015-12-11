@@ -9,13 +9,11 @@ public class Controller{
 	private HitRule hitrule;
 	private boolean playerTurn = true;
 	private boolean winGameAttack = false;
-	private HitRuleKing hrk;
 	
 	public Controller(int sizeOfMatrix){
 		gamefield = new Gamefield(sizeOfMatrix);
 		rule = new Rules();
 		hitrule = new HitRule();
-		hrk = new HitRuleKing();
 	}
 		
 	public void printField(){
@@ -35,6 +33,10 @@ public class Controller{
 				&& rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
 			gamefield.getField(xStart, yStart).setCharakter(changeStone);
 			gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
+			if(xStart == gamefield.getSizeOfGameField()/2 && yStart == gamefield.getSizeOfGameField()/2)
+				gamefield.getField(xStart, yStart).setOccupied(1);
+			else 
+				gamefield.getField(xStart, yStart).setOccupied(0);
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
 //			winGameAttack = hrk;
 			playerTurn = !playerTurn;
@@ -56,7 +58,8 @@ public class Controller{
 	}
 	
 	public boolean winGameAttack(){
-		if(winGameAttack){
+		if(hitrule.getKingVictory()){
+			System.out.println("\nAngreifer hat gewonnen!\n");
 			return false;
 		}
 		return true;

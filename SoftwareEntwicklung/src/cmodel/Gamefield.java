@@ -18,7 +18,6 @@ public class Gamefield {
 		sizeOfGameField = arraysize;
 		
 		if (sizeOfGameField % 2 == 0){
-			System.err.println("Fieldsize must be odd");
 			return;
 		}
 		
@@ -71,9 +70,9 @@ public class Gamefield {
 		mainGamefield[sizeOfGameField-1][sizeOfGameField-1].setVictory(true);
 		mainGamefield[sizeOfGameField-1][sizeOfGameField-1].setOccupied(1);
 		
-		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setOccupied(1);
-		
 		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setCharakter(new Stone(3));
+		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setVictory(true);
+		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setOccupied(1);
 	}
 	
 	public void setHitAble1(){

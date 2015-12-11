@@ -14,7 +14,8 @@ public class ControllerTest {
 	Controller c6; // test hit horizontal
 	Controller c7; // test hit vertical
 	Controller c8;
-	
+	Controller c9; 
+	Controller c10;
 	@Before
 	public void setUp(){
 		c1 = new Controller(13);
@@ -25,6 +26,8 @@ public class ControllerTest {
 		c6 = new Controller(9);
 		c7 = new Controller(9);
 		c8 = new Controller(9);
+		c9 = new Controller(9);
+		c10 = new Controller(9);
 		
 		c3.move(3, 0, 3, 1);
 		c3.move(4, 3, 2, 3);
@@ -66,11 +69,32 @@ public class ControllerTest {
 		c8.move(3, 8, 2, 8);
 		c8.move(4, 2, 4, 3);
 		
+		c9.move(4, 7, 5, 7);
+		c9.move(4, 6, 8, 6);
+		c9.move(5, 7, 8, 7);
+		c9.move(2, 4, 2, 8);
+		c9.move(1, 4, 1, 8);
+		
+		c10.move(5, 0, 6, 0);
+		c10.move(2, 4, 2, 0);
+		c10.move(1, 4, 1, 0);
+		c10.move(4, 2, 0, 2);
+		c10.move(4, 1, 0, 1);
+		c10.move(6, 4, 6, 8);
+		c10.move(7, 4, 7, 8);
+		c10.move(4, 3, 7, 3);
+		c10.move(4, 0, 4, 2);
+		c10.move(7, 3, 7, 0);
+		c10.move(0, 3, 3, 3);
+		c10.move(4, 4, 4, 3);
+		c10.move(8, 3, 5, 3);
+		c10.move(5, 4, 5, 6);
+		c10.move(8, 4, 4, 4);
 	}
 	
 	@Test
 	public void testPrintField(){
-		c1.printField();
+		c10.printField();
 	}
 	
 	@Test
@@ -86,6 +110,21 @@ public class ControllerTest {
 	public void testWinGame(){
 		assertFalse(c3.winGame());
 		assertTrue(c2.winGame());
+	}
+	
+	@Test
+	public void testGetWinGameAttack(){
+		c9.setWinGameAttack(true);
+		assertTrue(c9.getWinGameAttack());
+		assertFalse(c1.getWinGameAttack());
+	}
+	
+	@Test
+	public void testSetWinGameAttack(){
+		c1.setWinGameAttack(true);
+		assertTrue(c1.getWinGameAttack());
+		c1.setWinGameAttack(false);
+		assertFalse(c1.getWinGameAttack());
 	}
 	
 
