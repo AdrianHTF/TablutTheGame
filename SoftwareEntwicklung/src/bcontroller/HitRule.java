@@ -115,7 +115,7 @@ public class HitRule {
 			if((changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
 							!= changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
-							&& changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing() == false) 
+							&& !changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing()) 
 					&& (changedGamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() 
 							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
 			changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
@@ -128,7 +128,7 @@ public class HitRule {
 			if((changedGamefield.getField(xAxis + 1 , yAxis).getCharakter().getUnitSpecification() != 0
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
 							!= changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
-					&& changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing() == false)
+					&& !changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() 
 						== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
 				changedGamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
@@ -141,7 +141,7 @@ public class HitRule {
 			if((changedGamefield.getField(xAxis - 1 , yAxis).getCharakter().getUnitSpecification() != 0
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
 							!= changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
-							&& changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing() == false)
+							&& !changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification()
 							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
 				changedGamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
@@ -154,7 +154,7 @@ public class HitRule {
 			if((changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification() != 0 
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
 							!= changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
-							&& changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing() == false)
+							&& !changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() 
 							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
 				changedGamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));

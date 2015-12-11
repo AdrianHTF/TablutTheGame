@@ -7,25 +7,25 @@ public class HitRuleKing {
 		
 	}
 	
-	private boolean HitRuleKingUpper(int xAxis, int yAxis){
+	private boolean hitRuleKingUpper(int xAxis, int yAxis){
 		if(!characterException(xAxis + 1, yAxis))
 			return true;
 		return equalsThrone(xAxis + 1, yAxis);
 	}
 	
-	private boolean HitRuleKingLower(int xAxis, int yAxis){
+	private boolean hitRuleKingLower(int xAxis, int yAxis){
 		if(!characterException(xAxis - 1, yAxis))
 			return true;
 		return equalsThrone(xAxis - 1, yAxis);
 	}
 	
-	private boolean HitRuleKingLeft(int xAxis, int yAxis){
+	private boolean hitRuleKingLeft(int xAxis, int yAxis){
 		if(!characterException(xAxis, yAxis - 1))
 			return true;
 		return equalsThrone(xAxis, yAxis - 1);
 	}
 	
-	private boolean HitRuleKingRight(int xAxis, int yAxis){
+	private boolean hitRuleKingRight(int xAxis, int yAxis){
 		if(!characterException(xAxis, yAxis + 1))
 			return true;
 		return equalsThrone(xAxis, yAxis + 1);
@@ -41,8 +41,8 @@ public class HitRuleKing {
 	public boolean kingHit(Gamefield gamefield, int xAxis, int yAxis){
 		this.gamefield = gamefield;
 		if(gamefield.getField(xAxis, yAxis).getCharakter().getIsKing()){
-			if((HitRuleKingLeft(xAxis, yAxis) == true && HitRuleKingLower(xAxis, yAxis) == true 
-					&& HitRuleKingRight(xAxis, yAxis) == true && HitRuleKingUpper(xAxis, yAxis) == true))
+			if((hitRuleKingLeft(xAxis, yAxis)&& hitRuleKingLower(xAxis, yAxis) 
+					&& hitRuleKingRight(xAxis, yAxis) && hitRuleKingUpper(xAxis, yAxis)))
 				return true;
 			else
 				return false;

@@ -38,7 +38,6 @@ public class Controller{
 			else 
 				gamefield.getField(xStart, yStart).setOccupied(0);
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
-//			winGameAttack = hrk;
 			playerTurn = !playerTurn;
 		}
 	}
@@ -58,7 +57,7 @@ public class Controller{
 	}
 	
 	public boolean winGameAttack(){
-		if(hitrule.getKingVictory() == true){
+		if(hitrule.getKingVictory()){
 			System.out.println("\nAngreifer hat gewonnen!\n");
 			return false;
 		}

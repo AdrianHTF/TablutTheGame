@@ -29,7 +29,7 @@ public class Stone {
 			isKing = true;
 		}
 		else
-			System.err.println("Unit must be 1, 2 or 3");
+			return;
 	}
 	
 	public int getUnitSpecification() {
