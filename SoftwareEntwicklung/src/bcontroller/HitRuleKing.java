@@ -41,11 +41,8 @@ public class HitRuleKing {
 	public boolean kingHit(Gamefield gamefield, int xAxis, int yAxis){
 		this.gamefield = gamefield;
 		if(gamefield.getField(xAxis, yAxis).getCharakter().getIsKing()){
-			if((hitRuleKingLeft(xAxis, yAxis)&& hitRuleKingLower(xAxis, yAxis) 
-					&& hitRuleKingRight(xAxis, yAxis) && hitRuleKingUpper(xAxis, yAxis)))
-				return true;
-			else
-				return false;
+			return hitRuleKingLeft(xAxis, yAxis)&& hitRuleKingLower(xAxis, yAxis) 
+					&& hitRuleKingRight(xAxis, yAxis) && hitRuleKingUpper(xAxis, yAxis);
 		}
 		return false;
 	}
