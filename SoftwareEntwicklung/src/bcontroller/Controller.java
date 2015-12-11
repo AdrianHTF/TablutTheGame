@@ -58,7 +58,7 @@ public class Controller{
 	}
 	
 	public boolean winGameAttack(){
-		if(hitrule.getKingVictory()){
+		if(hitrule.getKingVictory() == true){
 			System.out.println("\nAngreifer hat gewonnen!\n");
 			return false;
 		}

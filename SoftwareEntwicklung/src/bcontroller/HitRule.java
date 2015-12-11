@@ -19,7 +19,16 @@ public class HitRule {
 		this.yAxis = yAxis;
 		changedGamefield = gamefield;
 		int x = changedGamefield.getField(xAxis, yAxis).getNoHit();
-
+		if(!(xAxis == 0 || yAxis == 0 
+				|| xAxis == changedGamefield.getSizeOfGameField() - 1
+				|| yAxis == changedGamefield.getSizeOfGameField() - 1)){
+			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis - 1));
+			setKingVictory(hk.kingHit(changedGamefield, xAxis - 1, yAxis));
+			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis + 1));
+			setKingVictory(hk.kingHit(changedGamefield, xAxis + 1, yAxis));
+		}
+					
+			
 		switch(x){
 			case 0:
 				hitable0();
@@ -100,7 +109,7 @@ public class HitRule {
 	
 	private void hitTop(){
 		if(changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing())
-			kingVictory = hk.kingHit(xAxis, yAxis - 1);
+			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis - 1));
 		else {
 			if((changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification() != 0 
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
@@ -113,7 +122,7 @@ public class HitRule {
 	}
 	private void hitRight(){
 		if(changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing())
-			kingVictory = hk.kingHit(xAxis + 1, yAxis);
+			setKingVictory(hk.kingHit(changedGamefield, xAxis + 1, yAxis));
 		else{
 			if((changedGamefield.getField(xAxis + 1 , yAxis).getCharakter().getUnitSpecification() != 0
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
@@ -126,7 +135,7 @@ public class HitRule {
 	}
 	private void hitLeft(){
 		if(changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing())
-			kingVictory = hk.kingHit(xAxis - 1, yAxis);
+			setKingVictory(hk.kingHit(changedGamefield, xAxis - 1, yAxis));
 		else {
 			if((changedGamefield.getField(xAxis - 1 , yAxis).getCharakter().getUnitSpecification() != 0
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
@@ -139,7 +148,7 @@ public class HitRule {
 	}
 	private void hitBott(){
 		if(changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing())
-			kingVictory = hk.kingHit(xAxis, yAxis + 1);
+			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis + 1));
 		else{
 			if((changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification() != 0 
 					&& (changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification() 
@@ -156,7 +165,8 @@ public class HitRule {
 	}
 	
 	public void setKingVictory(boolean kingVictory){
-		this.kingVictory = kingVictory;
+		if(!this.kingVictory)
+			this.kingVictory = kingVictory;
 	}
 
 }

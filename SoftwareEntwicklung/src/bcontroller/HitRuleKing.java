@@ -2,9 +2,7 @@ package bcontroller;
 
 import cmodel.*;
 public class HitRuleKing {
-	
 	private Gamefield gamefield;
-	
 	public HitRuleKing(){
 		
 	}
@@ -40,9 +38,16 @@ public class HitRuleKing {
 		return false;
 	}
 	
-	public boolean kingHit(int xAxis, int yAxis){
-		return (HitRuleKingLeft(xAxis, yAxis) && HitRuleKingLower(xAxis, yAxis) 
-				&& HitRuleKingRight(xAxis, yAxis) && HitRuleKingUpper(xAxis, yAxis));
+	public boolean kingHit(Gamefield gamefield, int xAxis, int yAxis){
+		this.gamefield = gamefield;
+		if(gamefield.getField(xAxis, yAxis).getCharakter().getIsKing()){
+			if((HitRuleKingLeft(xAxis, yAxis) == true && HitRuleKingLower(xAxis, yAxis) == true 
+					&& HitRuleKingRight(xAxis, yAxis) == true && HitRuleKingUpper(xAxis, yAxis) == true))
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 	
 	
