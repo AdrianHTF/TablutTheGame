@@ -1,4 +1,4 @@
-package bcontroller;
+package de.htwg.se.tablut.bcontroller;
 
 import static org.junit.Assert.*;
 

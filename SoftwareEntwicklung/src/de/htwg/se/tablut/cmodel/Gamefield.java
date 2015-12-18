@@ -1,4 +1,4 @@
-package cmodel;
+package de.htwg.se.tablut.cmodel;
 
 
 /**

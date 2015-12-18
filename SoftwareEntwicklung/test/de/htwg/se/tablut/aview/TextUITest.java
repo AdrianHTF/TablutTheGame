@@ -1,4 +1,4 @@
-package aview;
+package de.htwg.se.tablut.aview;
 
 import static org.junit.Assert.*;
 import org.junit.Before;

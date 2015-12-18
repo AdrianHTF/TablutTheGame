@@ -1,7 +1,7 @@
-package bcontroller;
+package de.htwg.se.tablut.bcontroller;
 
 
-import cmodel.*;
+import de.htwg.se.tablut.cmodel.*;
 public class Controller{
 	
 	private Gamefield gamefield;

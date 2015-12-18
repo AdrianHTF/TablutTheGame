@@ -1,5 +1,5 @@
-package bcontroller;
-import cmodel.*;
+package de.htwg.se.tablut.bcontroller;
+import de.htwg.se.tablut.cmodel.*;
 
 public class HitRule {
 	

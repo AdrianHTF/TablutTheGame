@@ -1,8 +1,9 @@
-package cmodel;
+package de.htwg.se.tablut.cmodel;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import org.junit.Before;
 public class GamefieldTest {
 

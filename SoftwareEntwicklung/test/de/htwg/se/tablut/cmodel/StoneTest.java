@@ -1,10 +1,8 @@
-package cmodel;
+package de.htwg.se.tablut.cmodel;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
-
 
 public class StoneTest {
 

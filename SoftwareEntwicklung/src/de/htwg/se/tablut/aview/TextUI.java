@@ -1,7 +1,7 @@
-package aview;
-import bcontroller.*;
+package de.htwg.se.tablut.aview;
+import java.util.Scanner;
 
-import java.util.Scanner;;
+import de.htwg.se.tablut.bcontroller.*;;
 
 public class TextUI {
 	private Controller controller;
