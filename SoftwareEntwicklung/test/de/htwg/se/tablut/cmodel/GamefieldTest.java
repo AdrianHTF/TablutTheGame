@@ -14,10 +14,15 @@ public class GamefieldTest {
 	
 	@Before
 	public void setUp(){
-		g1 = new Gamefield(9);
-		g2 = new Gamefield(11);
-		g3 = new Gamefield(13);
-		g4 = new Gamefield(4);
+		g1 = new Gamefield();
+		g2 = new Gamefield();
+		g3 = new Gamefield();
+		g4 = new Gamefield();
+		
+		g1.setStart(9);
+		g2.setStart(11);
+		g3.setStart(13);
+		g4.setStart(4);
 		
 	}
 	

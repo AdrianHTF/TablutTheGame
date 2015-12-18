@@ -7,14 +7,17 @@ package de.htwg.se.tablut.cmodel;
  *	in this class we implement the game-field for "Tablut"
  *	the game-field is realized as an array-matrix 
  */
-public class Gamefield {
+public class Gamefield implements IGamefield {
 
 	private Field[][] mainGamefield;
-	private int sizeOfGameField = 1;
+	private int sizeOfGameField = 0;
 	
 
-	public Gamefield (int arraysize){
-		
+	public Gamefield (){
+	}
+	
+	@Override
+	public void setStart(int arraysize){
 		sizeOfGameField = arraysize;
 		
 		if (sizeOfGameField % 2 == 0){
@@ -42,21 +45,33 @@ public class Gamefield {
 		setHitAble7();
 		setHitAble8();
 	}
+	
+	@Override
 	public Field[][] getGameField(){
 		return mainGamefield;
 	}
+	
+	@Override
 	public Field getField(int xAxis, int yAxis){
 		return mainGamefield[xAxis][yAxis];
 	}
+	
+	@Override
 	public void setGameField(Field[][] f){
 		mainGamefield = f;
 	}
+	
+	@Override
 	public int getSizeOfGameField(){
 		return sizeOfGameField;
 	}
+	
+	@Override
 	public void setSizeOfField(int i){
 		sizeOfGameField = i;
 	}
+	
+	@Override
 	public void setStandard(){
 		mainGamefield[0][0].setVictory(true);
 		mainGamefield[0][0].setOccupied(1);
@@ -75,6 +90,7 @@ public class Gamefield {
 		mainGamefield[sizeOfGameField/2][sizeOfGameField/2].setOccupied(1);
 	}
 	
+	@Override
 	public void setHitAble1(){
 		for(int i = 2; i < sizeOfGameField - 2; i++){
 			mainGamefield[i][0].setNoHit(1);
@@ -82,6 +98,7 @@ public class Gamefield {
 		}
 	}
 	
+	@Override
 	public void setHitAble2(){
 		mainGamefield[sizeOfGameField - 2][0].setNoHit(2);
 		mainGamefield[sizeOfGameField - 2][1].setNoHit(2);
@@ -89,6 +106,7 @@ public class Gamefield {
 		mainGamefield[sizeOfGameField - 1][0].setNoHit(2);
 	}
 	
+	@Override
 	public void setHitAble3(){
 		for(int i = 2; i < sizeOfGameField - 2; i++){
 			mainGamefield[sizeOfGameField - 1][i].setNoHit(3);
@@ -96,6 +114,7 @@ public class Gamefield {
 		}
 	}
 	
+	@Override
 	public void setHitAble4(){
 		mainGamefield[sizeOfGameField - 1][sizeOfGameField - 2].setNoHit(4);
 		mainGamefield[sizeOfGameField - 2][sizeOfGameField - 2].setNoHit(4);
@@ -103,6 +122,7 @@ public class Gamefield {
 		mainGamefield[sizeOfGameField - 1][sizeOfGameField - 1].setNoHit(4);
 	}
 	
+	@Override
 	public void setHitAble5(){
 		for(int i = 2; i < sizeOfGameField - 2; i++){
 			mainGamefield[i][sizeOfGameField - 1].setNoHit(5);
@@ -110,6 +130,7 @@ public class Gamefield {
 		}
 	}
 	
+	@Override
 	public void setHitAble6(){
 		mainGamefield[1][sizeOfGameField - 1].setNoHit(6);
 		mainGamefield[1][sizeOfGameField - 2].setNoHit(6);
@@ -117,6 +138,7 @@ public class Gamefield {
 		mainGamefield[0][sizeOfGameField - 1].setNoHit(6);
 	}
 	
+	@Override
 	public void setHitAble7(){
 		for(int i = 2; i < sizeOfGameField - 2; i++){
 			mainGamefield[0][i].setNoHit(7);
@@ -124,6 +146,7 @@ public class Gamefield {
 		}
 	}
 	
+	@Override
 	public void setHitAble8(){
 		mainGamefield[0][1].setNoHit(8);
 		mainGamefield[1][1].setNoHit(8);
@@ -131,6 +154,7 @@ public class Gamefield {
 		mainGamefield[0][0].setNoHit(8);
 	}
 	
+	@Override
 	public void setStartfieldAttack(){
 		int max = sizeOfGameField-1;
 		int middle = max/2;
@@ -160,6 +184,8 @@ public class Gamefield {
 			placeAtk();
 		}
 	}
+	
+	@Override
 	public void setStartfieldDefense(){
 		//---------------DEF---------------
 		int max = sizeOfGameField-1;
@@ -187,6 +213,7 @@ public class Gamefield {
 		}
 	}
 	
+	@Override
 	public void placeAtk(){
 		int max = sizeOfGameField-1;
 		int middle = max/2;

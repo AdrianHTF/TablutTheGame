@@ -1,4 +1,11 @@
 package de.htwg.se.tablut.bcontroller;
+import java.lang.invoke.MethodHandle;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.internal.runners.statements.InvokeMethod;
+
 import de.htwg.se.tablut.cmodel.*;
 
 public class HitRule {
@@ -28,8 +35,7 @@ public class HitRule {
 			setKingVictory(hk.kingHit(changedGamefield, xAxis - 1, yAxis));
 			setKingVictory(hk.kingHit(changedGamefield, xAxis + 1, yAxis));
 		}
-					
-			
+		
 		switch(x){
 			case 0:
 				hitable0();

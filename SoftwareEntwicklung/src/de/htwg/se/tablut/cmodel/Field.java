@@ -1,6 +1,6 @@
 package de.htwg.se.tablut.cmodel;
 
-public class Field {
+public class Field implements IField {
 	
 	private int occupied = 0;
 	private boolean victory = false;
@@ -21,34 +21,42 @@ public class Field {
 		
 	}
 
+	@Override
 	public int getOccupied() {
 		return occupied;
 	}
 
+	@Override
 	public void setOccupied(int occupied) {
 		this.occupied = occupied;
 	}
 
+	@Override
 	public boolean isVictory() {
 		return victory;
 	}
 
+	@Override
 	public void setVictory(boolean victory) {
 		this.victory = victory;
 	}
 	
+	@Override
 	public int getNoHit(){
 		return noHit;
 	}
 	
+	@Override
 	public void setNoHit(int noHit){
 		this.noHit = noHit;
 	}
 
+	@Override
 	public Stone getCharakter() {
 		return charakter;
 	}
 
+	@Override
 	public void setCharakter(Stone charakter) {
 		this.charakter = charakter;
 		if(charakter.getUnitSpecification() != 0)
