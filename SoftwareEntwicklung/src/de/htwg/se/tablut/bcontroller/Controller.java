@@ -13,7 +13,6 @@ public class Controller extends Observable implements IController{
 	
 	public Controller(){
 		gamefield = new Gamefield();
-		gamefield.setStart(sizeOfMatrix());
 		rule = new Rules();
 		hitrule = new HitRule();
 	}
@@ -48,14 +47,23 @@ public class Controller extends Observable implements IController{
 	}
 	
 	@Override
-	public void printField(){
-		for (int i = 0; i < gamefield.getSizeOfGameField(); i++){
-			for (int j = 0; j< gamefield.getSizeOfGameField(); j++){
-				if((j % gamefield.getSizeOfGameField()) == 0)
-					System.out.println("\n");
-				System.out.print(gamefield.getField(j, i));
-			}
-		}
+	public void funktion(){
+		int xStart = 0;
+		int yStart = 0;
+		int xZiel = 0;
+		int yZiel = 0;
+			System.out.println("\n\nBitte geben sie ihren Spielzug an:\n");
+			Scanner sc = new Scanner(System.in);
+			
+			if(sc.hasNextInt())
+				xStart = sc.nextInt();	// Eingabe X-Position des Steins, der bewegt werden soll
+			if(sc.hasNextInt())			
+				yStart = sc.nextInt();	// Eingabe Y-Position des Steins, der bewegt werden soll
+			if(sc.hasNextInt())
+				xZiel = sc.nextInt();	// Eingabe X-Position der Zielpostion
+			if(sc.hasNextInt())
+				yZiel = sc.nextInt();	// Eingabe Y-Position der Zielpostion
+			move(xStart, yStart, xZiel, yZiel);
 	}
 	
 	@Override
@@ -108,5 +116,10 @@ public class Controller extends Observable implements IController{
 	@Override
 	public void setWinGameAttack(boolean winGameAttack){
 		this.winGameAttack = winGameAttack;
+	}
+	
+	@Override
+	public Gamefield getGamefield(){
+		return gamefield;
 	}
 }

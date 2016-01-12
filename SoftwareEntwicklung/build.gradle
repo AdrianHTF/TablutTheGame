@@ -35,7 +35,7 @@ sourceSets {
 }
 
 jar {
-    manifest.attributes "Main-Class":"de.htwg.aview.textUI"
+    manifest.attributes "Main-Class":"de.htwg.se.tablut.main.Tablut"
 }
     
 sonarqube {

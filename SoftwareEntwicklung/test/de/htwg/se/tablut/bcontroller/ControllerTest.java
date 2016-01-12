@@ -97,13 +97,6 @@ public class ControllerTest {
 	}
 	
 	@Test
-	public void testPrintField(){
-		c18.printField();
-		//c10.printField();
-		//c9.printField();
-	}
-	
-	@Test
 	public void testMove(){
 		c2.move(3, 0, 3, 1);
 		c2.move(4, 2, 3, 2);
