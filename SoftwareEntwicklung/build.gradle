@@ -35,13 +35,13 @@ sourceSets {
 }
 
 jar {
-    manifest.attributes "Main-Class":"de.htwg.se.tablut.main.Tablut"
+    manifest.attributes "Main-Class":"de.htwg.se.tablut.Tablut"
 }
     
 sonarqube {
     properties {
     property "sonar.projectName", "SE2015WS-02-Hnefatafl"
-    property "sonar.projectKey", "de.htwg.Hnefatafl"
+    property "sonar.projectKey", "de.htwg.se.tablut"
     property "sonar.projectVersion", "2.0"
     property "sonar.binaries", "build/classes"
     property "sonar.java.coveragePlugin", "jacoco"

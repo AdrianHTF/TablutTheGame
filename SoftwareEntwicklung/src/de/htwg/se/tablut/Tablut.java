@@ -1,4 +1,4 @@
-package de.htwg.se.tablut.main;
+package de.htwg.se.tablut;
 import de.htwg.se.tablut.aview.*;
 import de.htwg.se.tablut.bcontroller.Controller;
 
