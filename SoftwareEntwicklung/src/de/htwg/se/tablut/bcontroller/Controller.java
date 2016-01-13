@@ -10,6 +10,7 @@ public class Controller extends Observable implements IController{
 	private HitRule hitrule;
 	private boolean playerTurn = true;
 	private boolean winGameAttack = false;
+	static Scanner reader = new Scanner(System.in);
 	
 	public Controller(){
 		gamefield = new Gamefield();
@@ -45,6 +46,7 @@ public class Controller extends Observable implements IController{
 		}
 		return 0;
 	}
+	
 	
 	@Override
 	public void funktion(){
