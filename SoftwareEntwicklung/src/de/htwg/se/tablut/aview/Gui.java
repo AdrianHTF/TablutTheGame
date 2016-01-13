@@ -8,8 +8,8 @@ import javax.swing.border.Border;
 import org.omg.Messaging.SyncScopeHelper;
 
 import de.htwg.se.tablut.bcontroller.*;
-import de.htwg.se.tablut.util.*;
-import de.htwg.se.tablut.util.Event;
+import de.htwg.se.tablut.dutil.*;
+import de.htwg.se.tablut.dutil.Event;
 
 
 public class Gui extends JFrame implements ActionListener,IObserver {

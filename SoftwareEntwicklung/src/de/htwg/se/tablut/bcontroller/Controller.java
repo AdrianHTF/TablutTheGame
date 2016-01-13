@@ -1,7 +1,7 @@
 package de.htwg.se.tablut.bcontroller;
 import java.util.Scanner;
 import de.htwg.se.tablut.cmodel.*;
-import de.htwg.se.tablut.util.*;
+import de.htwg.se.tablut.dutil.*;
 
 public class Controller extends Observable implements IController{
 	

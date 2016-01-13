@@ -1,7 +1,7 @@
 package de.htwg.se.tablut.aview;
 import java.util.Scanner;
 import de.htwg.se.tablut.bcontroller.*;
-import de.htwg.se.tablut.util.*;
+import de.htwg.se.tablut.dutil.*;
 
 public class TextUI implements IObserver {
 	private Controller controller;
