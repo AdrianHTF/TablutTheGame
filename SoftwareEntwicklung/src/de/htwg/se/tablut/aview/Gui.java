@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import org.omg.Messaging.SyncScopeHelper;
 
 import de.htwg.se.tablut.bcontroller.*;
 import de.htwg.se.tablut.dutil.*;
@@ -15,7 +14,6 @@ import de.htwg.se.tablut.dutil.Event;
 public class Gui extends JFrame implements ActionListener,IObserver {
 	
 	private static final long serialVersionUID = 1L;
-	private Controller controller;
 	
 	private final JFrame enterGamefield;
 		private final JButton size9;
@@ -46,7 +44,6 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 
 	
 	public Gui(Controller c){
-		controller = c;
 		enterGamefield = new JFrame("Spielfeld wählen");
 		enterPlayername = new JFrame("Spielernamen eingeben");
 		playTheGame = new JFrame("Tablut the Game");

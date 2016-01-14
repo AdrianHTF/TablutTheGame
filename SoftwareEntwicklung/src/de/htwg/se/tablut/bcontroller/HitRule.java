@@ -1,10 +1,4 @@
 package de.htwg.se.tablut.bcontroller;
-import java.lang.invoke.MethodHandle;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.internal.runners.statements.InvokeMethod;
 
 import de.htwg.se.tablut.cmodel.*;
 
