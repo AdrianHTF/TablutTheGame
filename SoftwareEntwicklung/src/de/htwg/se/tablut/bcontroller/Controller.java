@@ -10,7 +10,7 @@ public class Controller extends Observable implements IController{
 	private HitRule hitrule;
 	private boolean playerTurn = true;
 	private boolean winGameAttack = false;
-	static Scanner reader = new Scanner(System.in);
+	private int matrixSize = 0;
 	
 	public Controller(){
 		gamefield = new Gamefield();
@@ -33,14 +33,18 @@ public class Controller extends Observable implements IController{
 			Scanner sc = new Scanner(System.in);
 			
 			if(sc.hasNextInt()){
-				int a = sc.nextInt();
-				if(a == 9 || a == 11 || a == 13){
-					return a;
+				if(matrixSize == 0){
+					int a = sc.nextInt();
+					if(a == 9 || a == 11 || a == 13){
+						matrixSize = a;
+						return matrixSize;
+					}else{
+						System.out.println("Spielfeldgroesse nur in 9*9, 11*11 oder 13*13");
+					}
+				}else{
+					return matrixSize;
 				}
-				else{
-					System.out.println("Spielfeldgroesse nur in 9*9, 11*11 oder 13*13");
-				}
-			} else {
+			}else{
 				System.out.println("Falsche Eingabe!");
 			}
 		}
@@ -89,7 +93,7 @@ public class Controller extends Observable implements IController{
 	
 	@Override
 	public boolean winGame(){
-		// Siegbedingung für den Verteidiger
+		// Siegbedingung fï¿½r den Verteidiger
 		if((gamefield.getField(gamefield.getSizeOfGameField()-1, gamefield.getSizeOfGameField()-1).getCharakter().getIsKing())
 				|| (gamefield.getField(0, gamefield.getSizeOfGameField()-1).getCharakter().getIsKing())
 				|| (gamefield.getField(gamefield.getSizeOfGameField()-1, 0).getCharakter().getIsKing())
@@ -123,5 +127,13 @@ public class Controller extends Observable implements IController{
 	@Override
 	public Gamefield getGamefield(){
 		return gamefield;
+	}
+	
+	public void setMatrixSize(int size){
+		matrixSize = size;
+	}
+	
+	public int getMatrixSize(){
+		return matrixSize;
 	}
 }

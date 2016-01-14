@@ -1,10 +1,13 @@
 package de.htwg.se.tablut.aview;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
-
+import java.util.Scanner;
 
 import de.htwg.se.tablut.bcontroller.*;
 import de.htwg.se.tablut.dutil.*;
@@ -14,6 +17,17 @@ import de.htwg.se.tablut.dutil.Event;
 public class Gui extends JFrame implements ActionListener,IObserver {
 	
 	private static final long serialVersionUID = 1L;
+	private Controller controller;
+	private Icon angreiferIMG;
+	private Icon koenigIMG;
+	private Icon verteidigerIMG;
+	private Icon burgIMG;
+	private int state = 0;
+	private boolean setByTextUI = false;
+	private int xStart;
+	private int yStart;
+	private int xZiel;
+	private int yZiel;
 	
 	private final JFrame enterGamefield;
 		private final JButton size9;
@@ -44,7 +58,14 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 
 	
 	public Gui(Controller c){
-		enterGamefield = new JFrame("Spielfeld wählen");
+		controller = c;
+		controller.addObserver(this);
+		angreiferIMG = new ImageIcon("Angreifer.jpg");
+		verteidigerIMG = new ImageIcon("Verteidiger.jpg");
+		koenigIMG = new ImageIcon("Koenig.jpg");
+		burgIMG = new ImageIcon("Burg.jpg");
+		
+		enterGamefield = new JFrame("Spielfeld wï¿½hlen");
 		enterPlayername = new JFrame("Spielernamen eingeben");
 		playTheGame = new JFrame("Tablut the Game");
 		
@@ -85,7 +106,10 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("9");
-						setButtonField(9);
+						if(controller.getMatrixSize() == 0){
+							controller.setMatrixSize(9);
+							setButtonField(9);
+						}
 						enterGamefield.dispose();
 						enterPlayername.setJMenuBar(menuBar.getMenuBar());
 						enterPlayername.pack();
@@ -97,7 +121,10 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("11");
-						setButtonField(11);
+						if(controller.getMatrixSize() == 0){
+							controller.setMatrixSize(11);
+							setButtonField(11);
+						}
 						enterGamefield.dispose();
 						enterPlayername.setJMenuBar(menuBar.getMenuBar());
 						enterPlayername.pack();
@@ -109,7 +136,10 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("13");
-						setButtonField(13);
+						if(controller.getMatrixSize() == 0){
+							controller.setMatrixSize(13);
+							setButtonField(13);
+						}
 						enterGamefield.dispose();
 						enterPlayername.setJMenuBar(menuBar.getMenuBar());
 						enterPlayername.pack();
@@ -129,7 +159,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 				playerNamePanel = new JPanel(null);
 				playerNamePanel.setBackground(Color.ORANGE.darker());
 				insets = playerNamePanel.getInsets();
-				whoAttacks = new JTextArea("Du wagst es deinen König anzugreifen?\nSo nenne deinen Namen");
+				whoAttacks = new JTextArea("Du wagst es deinen Kï¿½nig anzugreifen?\nSo nenne deinen Namen");
 					whoAttacks.setBackground(Color.BLACK.darker());
 					whoAttacks.setForeground(Color.RED.brighter());
 					whoAttacks.setEditable(false);
@@ -152,7 +182,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 							
 						}
 					});
-				whoDefense = new JTextArea("Dein König ist in Gefahr,\nVerteidige ihn!");
+				whoDefense = new JTextArea("Dein Kï¿½nig ist in Gefahr,\nVerteidige ihn!");
 					whoDefense.setBackground(Color.BLACK.darker());
 					whoDefense.setForeground(Color.RED.brighter());
 					whoDefense.setEditable(false);
@@ -222,7 +252,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 				info = new JPanel(new GridLayout(1, 1));
 				Border border = BorderFactory.createTitledBorder("Zuginformation");
 				info.setBorder(border);
-					gameinformation = new JLabel("Test");
+					gameinformation = new JLabel("");
 					info.add(gameinformation);
 				
 		//Panel Main
@@ -247,7 +277,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 			for(int j = 0; j < chessbord[i].length; j++){
 				chessbord[i][j] = new JButton("");
 				chessbord[i][j].setMargin(buttonMargin);
-				chessbord[i][j].setActionCommand("X=" + j + " Y=" + i);
+				chessbord[i][j].setActionCommand(j+ " " + i);
 						
 				ImageIcon icon = new ImageIcon(new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB));
 				chessbord[i][j].setIcon(icon);
@@ -262,7 +292,18 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println(e.getActionCommand());
+						String s = e.getActionCommand();
+						Scanner sc = new Scanner(s);
+						if(state == 0){
+							xStart = sc.nextInt();
+							yStart = sc.nextInt();
+							state = 1;
+						} else if(state == 1){
+							xZiel = sc.nextInt();
+							yZiel = sc.nextInt();
+							state = 0;
+							controller.move(xStart, yStart, xZiel, yZiel);
+						}
 					}
 				});
 				gamefield.add(chessbord[i][j]);
@@ -280,6 +321,28 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 
 	@Override
 	public void update(Event e) {
-		
+		if(!controller.winGameAttack() || !controller.winGame()){
+			JOptionPane.showMessageDialog(info, "Gewonnen");
+		}
+		if(controller.getMatrixSize() != 0 && !setByTextUI){
+			setButtonField(controller.getMatrixSize());
+			setByTextUI = true;
+		}
+		for (int i = 0; i < controller.getGamefield().getSizeOfGameField(); i++){
+			for (int j = 0; j< controller.getGamefield().getSizeOfGameField(); j++){
+				
+				if(controller.getGamefield().getField(j, i).toString().trim().equals("X")){
+					chessbord[i][j].setIcon(burgIMG);
+				} else if(controller.getGamefield().getField(j, i).toString().trim().equals("A")){
+					chessbord[i][j].setIcon(angreiferIMG);
+				} else if(controller.getGamefield().getField(j, i).toString().trim().equals("K")){
+					chessbord[i][j].setIcon(koenigIMG);
+				} else if(controller.getGamefield().getField(j, i).toString().trim().equals("D")){
+					chessbord[i][j].setIcon(verteidigerIMG);
+				} else if(controller.getGamefield().getField(j, i).toString().trim().equals("_")){
+					chessbord[i][j].setIcon(null);
+				}
+			}
+		}
 	}
 }
