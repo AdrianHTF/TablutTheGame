@@ -1,14 +1,11 @@
 package de.htwg.se.tablut.aview;
 
-import javax.management.JMException;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.*;
 import java.awt.event.*;
 
 
 public class GuiMenuBar
-        extends JMenuBar implements ActionListener {
+        extends JMenuBar{
 
 	/**
 	 * 
@@ -49,15 +46,29 @@ public class GuiMenuBar
 		rules = new JMenuItem("Spielregeln");
 		controles = new JMenuItem("Bedienung");
 		
-		//generate ActionListner
-		undo.addActionListener(this);
-		redo.addActionListener(this);
-		restart.addActionListener(this);
-		patt.addActionListener(this);
-		exit.addActionListener(this);
+		rules.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GuiSpielanleitung howToPlay = new GuiSpielanleitung();
+			}
+		});
 		
-		rules.addActionListener(this);
-		controles.addActionListener(this);
+		controles.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GuiHilfe help = new GuiHilfe();
+			}
+		});
+		
+		exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		//add Items to Menu
 		menuBar.add(data);
@@ -78,13 +89,6 @@ public class GuiMenuBar
 	
 	public JMenuBar getMenuBar(){
 		return menuBar;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e){
-		
-	}
-	
-	
+	}	
 	
 }
