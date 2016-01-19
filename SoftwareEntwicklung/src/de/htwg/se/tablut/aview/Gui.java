@@ -65,7 +65,7 @@ public class Gui extends JFrame implements IObserver {
 		burgIMG = new ImageIcon("Burg.jpg");
 		rammstein = new ImageIcon("rammstein");
 		
-		enterGamefield = new JFrame("Spielfeld wählen");
+		enterGamefield = new JFrame("Spielfeld wï¿½hlen");
 		enterPlayername = new JFrame("Spielernamen eingeben");
 		playTheGame = new JFrame("Tablut the Game");
 		
@@ -256,7 +256,7 @@ public class Gui extends JFrame implements IObserver {
 				info = new JPanel(new GridLayout(1, 1));
 				Border border = BorderFactory.createTitledBorder("Zuginformation");
 				info.setBorder(border);
-					gameinformation = new JLabel("");
+					gameinformation = new JLabel("Waehle eine Figur!");
 					info.add(gameinformation);
 				
 		//Panel Main
@@ -299,10 +299,12 @@ public class Gui extends JFrame implements IObserver {
 						String s = e.getActionCommand();
 						Scanner sc = new Scanner(s);
 						if(state == 0){
+							gameinformation.setText("Wohin soll die Figur laufen?");
 							xStart = sc.nextInt();
 							yStart = sc.nextInt();
 							state = 1;
 						} else if(state == 1){
+							gameinformation.setText("Waehle eine Figur!");
 							xZiel = sc.nextInt();
 							yZiel = sc.nextInt();
 							state = 0;
@@ -319,6 +321,13 @@ public class Gui extends JFrame implements IObserver {
 
 	@Override
 	public void update(Event e) {
+		if(controller.getPlayerTurn()){
+			playerOne.setBackground(Color.GREEN);
+			playerTwo.setBackground(Color.GRAY);
+		}else{
+			playerOne.setBackground(Color.GRAY);
+			playerTwo.setBackground(Color.GREEN);
+		}
 		if(!controller.winGameAttack() || !controller.winGame()){
 			JOptionPane.showMessageDialog(info, "Gewonnen");
 		}

@@ -14,9 +14,37 @@ public class TextUI implements IObserver {
 	
 	public void funktion(String line){
 		if(line.matches("[0-9]+[/. -][0-9]+[/. -][0-9]+[/. -][0-9]+")){
-			System.out.println("bin drinne");
-			int[] arg = readToArray(line);
+			moveEingabe(line);
+		} else if(line.matches("[0-9]+")){
+			matrixSizeEingabe(line);
+		}
+	}
+	
+	private void moveEingabe(String line){
+		int[] arg = readToArray(line);
+		int xStart = arg[0];
+		int yStart = arg[2];
+		int xZiel = arg[4];
+		int yZiel = arg[6];
+		int size = controller.getMatrixSize();
+		if(xStart < size && yStart < size &&
+				xZiel < size && yZiel < size){
 			controller.move(arg[0], arg[2], arg[4], arg[6]);
+		}else{
+			System.out.println("Eingabe geht uebers Spielfeld");
+		}
+	}
+	
+	private void matrixSizeEingabe(String line){
+		if(controller.getMatrixSize() < 0){
+			return;
+		}
+		int[] arg = readToArray(line);
+		int matrixSize = arg[0];
+		if(matrixSize == 9
+				|| matrixSize == 11
+				|| matrixSize == 13){
+			controller.setMatrixSize(matrixSize);
 		}
 	}
 	
@@ -24,12 +52,10 @@ public class TextUI implements IObserver {
 		Pattern p = Pattern.compile("[0-9]+");
 		Matcher m = p.matcher(line);
 		int[] arg = new int[line.length()];
-		for (int i = 0; i < 7; i+=2){
+		for (int i = 0; (i < arg.length && i < 7); i+=2){
 			m.find();
 			arg[i] = Integer.parseInt(m.group());
-			System.out.println(arg[i]+"");
 		}
-		System.out.println("bin fertig");
 		return arg;
 	}
 

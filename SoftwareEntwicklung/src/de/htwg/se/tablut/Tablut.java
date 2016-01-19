@@ -12,12 +12,11 @@ public class Tablut {
 		controller = new Controller();
 		gui = new Gui(controller);
 		textUI = new TextUI(controller);
-		controller.getGamefield().setStart(controller.sizeOfMatrix());
-		controller.notifyObservers();
 		Scanner sc = new Scanner(System.in);
-		while (controller.winGameAttack() && controller.winGame()){
+		System.out.println("Geben Sie eine Feldgroesse an.");
+		do{
 			textUI.funktion(sc.next());
-		}
+		}while (controller.winGameAttack() && controller.winGame());
 		System.out.println("Bla hat gewonnen");
 	}
 	
