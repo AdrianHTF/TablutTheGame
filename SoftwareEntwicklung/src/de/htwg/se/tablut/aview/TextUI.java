@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class TextUI implements IObserver {
 	
 	private Controller controller;
-	private final static Logger LOGGER = Logger.getLogger(TextUI.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TextUI.class.getName());
 	
 	public TextUI(Controller c){
 		this.controller = c;
@@ -37,7 +37,6 @@ public class TextUI implements IObserver {
 		}else{
 			LOGGER.setLevel(Level.INFO);
 			LOGGER.info("Eingabe geht uebers Spielfeld");
-			//System.out.println("Eingabe geht uebers Spielfeld");
 		}
 	}
 	

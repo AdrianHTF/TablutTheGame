@@ -27,7 +27,7 @@ public class GuiMenuBar
 	private final JMenuItem controles;
 	
 	
-	public GuiMenuBar(){
+	public GuiMenuBar(JFrame j, JFrame i, JFrame x){
 		//create MenueBar
 		menuBar = new JMenuBar();
 		menuBar.setOpaque(true);
@@ -57,7 +57,7 @@ public class GuiMenuBar
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GuiSpielanleitung howToPlay = new GuiSpielanleitung();
+				buildSpielanleitung();
 			}
 		});
 		
@@ -65,7 +65,7 @@ public class GuiMenuBar
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GuiHilfe help = new GuiHilfe();
+				buildHelp();
 			}
 		});
 		
@@ -73,7 +73,12 @@ public class GuiMenuBar
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				j.setVisible(false);
+				x.setVisible(false);
+				i.setVisible(false);
+				j.dispose();
+				x.dispose();
+				i.dispose();
 			}
 		});
 		
@@ -96,6 +101,15 @@ public class GuiMenuBar
 	
 	public JMenuBar getMenuBar(){
 		return menuBar;
-	}	
+	}
 	
+	public GuiSpielanleitung buildSpielanleitung(){
+		GuiSpielanleitung howToPlay = new GuiSpielanleitung();
+		return howToPlay;
+	}
+	
+	public GuiHilfe buildHelp(){
+		GuiHilfe help = new GuiHilfe();
+		return help;
+	}
 }

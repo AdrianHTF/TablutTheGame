@@ -1,7 +1,12 @@
 package de.htwg.se.tablut.bcontroller;
 
 import de.htwg.se.tablut.cmodel.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class HitRuleKing {
+	private final static Logger LOGGER = Logger.getLogger(HitRuleKing.class.getName());
 	private Gamefield gamefield;
 	public HitRuleKing(){
 		
@@ -53,6 +58,7 @@ public class HitRuleKing {
 			gamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification();
 			return true;
 		} catch(Exception e){
+			LOGGER.log(Level.SEVERE, e.toString(), e);
 			return false;
 		}
 	}

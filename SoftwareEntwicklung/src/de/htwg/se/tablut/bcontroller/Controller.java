@@ -53,8 +53,7 @@ public class Controller extends Observable implements IController{
 				|| (gamefield.getField(gamefield.getSizeOfGameField()-1, 0).getCharakter().getIsKing())
 				|| (gamefield.getField(0, 0).getCharakter().getIsKing())){
 			LOGGER.setLevel(Level.FINEST);
-			LOGGER.info("\nVerteidiger hat gewonnen!");
-			//System.out.println("\nVerteidiger hat gewonnen!\n");
+			LOGGER.info("\nVerteidiger hat gewonnen!");//System.out.println("\nVerteidiger hat gewonnen!\n");
 			return false;
 			
 		} else
@@ -65,7 +64,6 @@ public class Controller extends Observable implements IController{
 	public boolean winGameAttack(){
 		if(hitrule.getKingVictory()){
 			LOGGER.info("\n Angreifer hat gewonnen!");
-			//System.out.println("\nAngreifer hat gewonnen!\n");
 			return false;
 		}
 		return true;

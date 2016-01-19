@@ -76,7 +76,7 @@ public class Gui extends JFrame implements IObserver {
 				enterPlayername.setPreferredSize(new Dimension(515, 420));
 				playTheGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				playTheGame.setPreferredSize(new Dimension(800, 800));
-				GuiMenuBar menuBar = new GuiMenuBar();
+				GuiMenuBar menuBar = new GuiMenuBar(enterGamefield, enterPlayername, playTheGame);
 				
 //______________________________________________________________________________________________________________________				
 		
