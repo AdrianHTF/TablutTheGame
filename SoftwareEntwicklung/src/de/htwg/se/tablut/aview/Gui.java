@@ -54,7 +54,7 @@ public class Gui extends JFrame implements IObserver {
 		private final JPanel info;
 		private final JLabel gameinformation;
 		private final JPanel main;
-
+		private final String playTablutString = "PLAY TABLUT";
 	
 	public Gui(Controller c){
 		controller = c;
@@ -85,7 +85,6 @@ public class Gui extends JFrame implements IObserver {
 				start.setBackground(Color.ORANGE.darker());
 				Dimension size;
 				Insets insets = start.getInsets();
-				final String playTablutString = "PLAY TABLUT";
 				playTablut = new JTextField(playTablutString);
 					playTablut.setEditable(false);
 					playTablut.setBackground(Color.BLACK);

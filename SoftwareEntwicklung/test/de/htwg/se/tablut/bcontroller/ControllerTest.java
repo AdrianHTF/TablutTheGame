@@ -25,6 +25,7 @@ public class ControllerTest {
 	Controller c16; // test right side kinghit
 	Controller c17; // test upper side kinghit
 	Controller c18; // test left side kinghit
+	Controller c19;
 	
 	@Before
 	public void setUp(){
@@ -34,6 +35,7 @@ public class ControllerTest {
 		c10 = new Controller(9); c11 = new Controller(9); c12 = new Controller(9);
 		c13 = new Controller(9); c14 = new Controller(9); c15 = new Controller(9);
 		c16 = new Controller(9); c17 = new Controller(9); c18 = new Controller(9);
+		c19 = new Controller();
 		
 		c3.move(3, 0, 3, 1); c3.move(4, 3, 2, 3); c3.move(3, 1, 3, 0); c3.move(4, 4, 4, 3);
 		c3.move(3, 0, 3, 1); c3.move(4, 3, 7, 3); c3.move(3, 1, 3, 0); c3.move(7, 3, 7, 0);
@@ -134,6 +136,24 @@ public class ControllerTest {
 	public void testSetWinGameAttack(){
 		c1.setWinGameAttack(true);
 		assertTrue(c1.getWinGameAttack());
+	}
+	
+	@Test
+	public void testGetGamefield(){
+		c1.getGamefield();
+	}
+	
+	@Test
+	public void testSetMatrixSize(){
+		c1.setMatrixSize(13);
+		c10.setMatrixSize(9);
+		assertEquals(c1.getMatrixSize(), 13);
+		assertEquals(c10.getMatrixSize(), 9);
+	}
+	
+	@Test
+	public void testGetPlayerTurn(){
+		c1.getPlayerTurn();
 	}
 	
 
