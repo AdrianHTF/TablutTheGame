@@ -1,1 +1,18 @@
-was
+Start
+________________________
+
+Hier geben sie, mittels drücken des jeweiligen Buttons, an auf 
+welcher Spielfeldgröße sie spielen wollen.
+
+Eingabe Namen
+________________________
+
+Tragen sie hier die Namen der jeweiligen Spieler ein(kann Option).
+Standartmäßig sind Spieler1 und Spieler2 eingetragen.
+
+Im Spiel
+________________________
+
+um einen Zug zu tätigen wählen sie mittels Mausklick den gewünschten
+Spielstein aus, den sie bewegen wollen. Mit einem weitern Klick auf
+die gewünschte Zielposition bewegen sie den Stein an diese Stelle.

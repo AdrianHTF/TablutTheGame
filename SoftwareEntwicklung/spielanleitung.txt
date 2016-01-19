@@ -1,1 +1,28 @@
-test
+Tablut - das Spiel aus dem Norden
+
+Dieses Spiel entdeckte der große Naturforscher Carl von Linné in Lappland und schrieb es 
+in seinem Tagebuch auf. Tablut gehört zu einer Gruppe von Spielen, die es schon seit dem 
+4. Jahrhundert nach Christus im Norden Europas gibt. 
+Die Wikinger brachten diese Spiele bei ihren Seefahrten auch nach England und Island.
+
+
+Spielanleitung:
+
+Auf dem Feld in der Mitte steht der König. Er wird von Verteidigern bewacht. An den 
+Spielrändern stehen die Angreifer, die den König Gefangen nehmen wollen.
+
+Das Königisfeld in der Mitte des Spielfelds darf nur vom König betreten werden. Die anderen 
+Spielsteine dürfen aber darüber hinwegziehen. 
+
+Jetzt zieht ihr abwechselnd(mit dem Angreifer beginnend) einen eigenen Spielstein senkrecht 
+oder waagerecht über eine beliebige Anzahl freier Felder. Überspringen ist nicht erlaubt.
+
+Der Gegner kann in einem Zug bis zu drei Steine von dir gefangen nehmen. Dazu muss der Gegner 
+deine Steine mit zwei Spielsteinen einschließen. Die gefangenen Steine werden aus dem Spiel 
+genommen. Schiebst du dagegen einen eigenen Stein zwischen zwei gegnerische Steine, bleibt er 
+ungeschoren im Spiel(Kein Slebstmord).
+
+
+
+Ziel des Königs ist es an den Spielfeldrand zu gelangen. Wird er jedoch von den Angreifern auf 
+allen vier Seiten kreuzförmig umstellt, ist er gefangen und verliert.

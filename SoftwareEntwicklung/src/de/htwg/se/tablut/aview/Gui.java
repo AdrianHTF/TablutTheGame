@@ -1,10 +1,8 @@
 package de.htwg.se.tablut.aview;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.awt.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.util.Scanner;
@@ -14,7 +12,7 @@ import de.htwg.se.tablut.dutil.*;
 import de.htwg.se.tablut.dutil.Event;
 
 
-public class Gui extends JFrame implements ActionListener,IObserver {
+public class Gui extends JFrame implements IObserver {
 	
 	private static final long serialVersionUID = 1L;
 	private Controller controller;
@@ -22,6 +20,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 	private Icon koenigIMG;
 	private Icon verteidigerIMG;
 	private Icon burgIMG;
+	private ImageIcon rammstein;
 	private int state = 0;
 	private boolean setByTextUI = false;
 	private int xStart;
@@ -64,8 +63,9 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 		verteidigerIMG = new ImageIcon("Verteidiger.jpg");
 		koenigIMG = new ImageIcon("Koenig.jpg");
 		burgIMG = new ImageIcon("Burg.jpg");
+		rammstein = new ImageIcon("rammstein");
 		
-		enterGamefield = new JFrame("Spielfeld wï¿½hlen");
+		enterGamefield = new JFrame("Spielfeld wählen");
 		enterPlayername = new JFrame("Spielernamen eingeben");
 		playTheGame = new JFrame("Tablut the Game");
 		
@@ -93,8 +93,11 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 					playTablut.setPreferredSize(new Dimension(760, 200));
 					size = playTablut.getPreferredSize();
 					playTablut.setBounds(10 + insets.left, 10 + insets.top, size.width, size.height);
-				picture = new JLabel("");
+				
 				size = new Dimension(200, 40);
+				picture = new JLabel("bsl");
+					picture.setBounds(100 + insets.left, 350, size.width, size.height);
+					picture.setIcon(rammstein);
 				size9 = new JButton("Tablut 9x9");
 					size9.setBounds(390 + insets.left, 250 , size.width, size.height);
 				size11 = new JButton("Hnefatafl 11x11");
@@ -148,6 +151,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 				});
 				
 				start.add(playTablut);
+				start.add(picture);
 				start.add(size9);
 				start.add(size11);
 				start.add(size13);
@@ -311,13 +315,7 @@ public class Gui extends JFrame implements ActionListener,IObserver {
 		}
 		main.add(gamefield, BorderLayout.CENTER);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		
-		
-	}
+	
 
 	@Override
 	public void update(Event e) {
