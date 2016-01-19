@@ -3,8 +3,7 @@ import de.htwg.se.tablut.cmodel.*;
 import de.htwg.se.tablut.dutil.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class Controller extends Observable implements IController{
 	
@@ -15,8 +14,8 @@ public class Controller extends Observable implements IController{
 	private boolean winGameAttack = false;
 	private int matrixSize = 0;
 	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
-	private Queue<Gamefield> undoList = new LinkedList<>();
-	private Queue<Gamefield> redoList = new LinkedList<>();
+	private Stack<Gamefield> undoList = new Stack<>();
+	private Stack<Gamefield> redoList = new Stack<>();
 	
 	public Controller(){
 		gamefield = new Gamefield();
@@ -39,6 +38,8 @@ public class Controller extends Observable implements IController{
 				&& rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
 			gamefield.getField(xStart, yStart).setCharakter(changeStone);
 			gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
+			undoPush();
+			redoList.clear();
 			if(xStart == gamefield.getSizeOfGameField()/2 && yStart == gamefield.getSizeOfGameField()/2){
 				gamefield.getField(xStart, yStart).setOccupied(1);
 			} else {
@@ -47,8 +48,7 @@ public class Controller extends Observable implements IController{
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
 			playerTurn = !playerTurn;
 		}
-		undoList.add(gamefield);
-		redoList.clear();
+		
 		notifyObservers();
 	}
 	
@@ -94,7 +94,7 @@ public class Controller extends Observable implements IController{
 	public void setMatrixSize(int size){
 		matrixSize = size;
 		gamefield.setStart(matrixSize);
-		undoList.add(gamefield);
+		undoPush();
 		notifyObservers();
 	}
 	
@@ -108,10 +108,18 @@ public class Controller extends Observable implements IController{
 		return playerTurn;
 	}
 	
+	public void undoPush(){
+		Gamefield c = new Gamefield();
+		c = gamefield;
+		undoList.push(c);
+	}
+	
 	@Override
 	public void undo(){
+		System.out.println("Undo macht er");
 		if(!undoList.isEmpty()){
-			Gamefield g = undoList.poll();
+			System.out.println("kommt auch hier rein");
+			Gamefield g = undoList.pop();
 			gamefield = g;
 			redoList.add(g);
 			notifyObservers();
@@ -121,7 +129,7 @@ public class Controller extends Observable implements IController{
 	@Override
 	public void redo(){
 		if(!redoList.isEmpty()){
-			gamefield = redoList.poll();
+			gamefield = redoList.pop();
 			notifyObservers();
 		}
 	}

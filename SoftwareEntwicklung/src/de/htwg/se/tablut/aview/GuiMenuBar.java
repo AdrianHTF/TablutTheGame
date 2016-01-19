@@ -1,7 +1,10 @@
 package de.htwg.se.tablut.aview;
 
 import javax.swing.*;
+
 import java.awt.event.*;
+import de.htwg.se.tablut.bcontroller.Controller;
+import de.htwg.se.tablut.dutil.*;
 
 
 public class GuiMenuBar
@@ -11,6 +14,10 @@ public class GuiMenuBar
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Controller controller;
+	private CommandPattern undoCommand;
+	private CommandPattern redoCommand;
+	private Invoker invoker;
 
 	private final JMenuBar menuBar;
 	
@@ -27,7 +34,11 @@ public class GuiMenuBar
 	private final JMenuItem controles;
 	
 	
-	public GuiMenuBar(JFrame j, JFrame i, JFrame x){
+	public GuiMenuBar(JFrame j, JFrame i, JFrame x, Controller c){
+		controller = c;
+		undoCommand = new UndoManager(controller);
+		redoCommand = new RedoManager(controller);
+		invoker = new Invoker();
 		//create MenueBar
 		menuBar = new JMenuBar();
 		menuBar.setOpaque(true);
@@ -42,10 +53,17 @@ public class GuiMenuBar
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				invoker.setCommand(undoCommand);
 			}
 		});
 		redo = new JMenuItem("Ein Zug vorwaerts");
+		redo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				invoker.setCommand(redoCommand);
+			}
+		});
 		restart = new JMenuItem("Neustart");
 		patt = new JMenuItem("Unentschieden?");
 		exit = new JMenuItem("Beenden");
