@@ -3,9 +3,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import de.htwg.se.tablut.bcontroller.*;
 import de.htwg.se.tablut.dutil.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TextUI implements IObserver {
+	
 	private Controller controller;
+	private final static Logger LOGGER = Logger.getLogger(TextUI.class.getName());
 	
 	public TextUI(Controller c){
 		this.controller = c;
@@ -31,7 +35,9 @@ public class TextUI implements IObserver {
 				xZiel < size && yZiel < size){
 			controller.move(arg[0], arg[2], arg[4], arg[6]);
 		}else{
-			System.out.println("Eingabe geht uebers Spielfeld");
+			LOGGER.setLevel(Level.INFO);
+			LOGGER.info("Eingabe geht uebers Spielfeld");
+			//System.out.println("Eingabe geht uebers Spielfeld");
 		}
 	}
 	
@@ -52,7 +58,7 @@ public class TextUI implements IObserver {
 		Pattern p = Pattern.compile("[0-9]+");
 		Matcher m = p.matcher(line);
 		int[] arg = new int[line.length()];
-		for (int i = 0; (i < arg.length && i < 7); i+=2){
+		for (int i = 0; i < arg.length && i < 7; i+=2){
 			m.find();
 			arg[i] = Integer.parseInt(m.group());
 		}
@@ -61,15 +67,18 @@ public class TextUI implements IObserver {
 
 	@Override
 	public void update(Event e) {
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < controller.getGamefield().getSizeOfGameField(); i++){
 			for (int j = 0; j< controller.getGamefield().getSizeOfGameField(); j++){
 				if((j % controller.getGamefield().getSizeOfGameField()) == 0)
-					System.out.println("\n");
-				System.out.print(controller.getGamefield().getField(j, i));
+					sb.append("\n");
+				sb.append(controller.getGamefield().getField(j, i).toString());
 			}
 		}
+		
 		for(int i = 0; i < 5; i++){
-			System.out.println("");
+			sb.append("");
 		}
+		LOGGER.info(sb.toString());
 	}
 }

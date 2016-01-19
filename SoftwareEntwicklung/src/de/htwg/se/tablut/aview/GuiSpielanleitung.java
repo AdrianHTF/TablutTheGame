@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.io.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.logging.Logger;
 
 public class GuiSpielanleitung {
 	
+	private final static Logger LOGGER = Logger.getLogger(GuiSpielanleitung.class.getName());
 	private final JFrame howToPlayFrame;
 	private final JTextArea howToPlay;
 	
@@ -21,9 +23,13 @@ public class GuiSpielanleitung {
 				howToPlay.append(str);
 			}
 		} catch(IOException e){
-			
+			LOGGER.info(e.toString());
 		} finally {
-			try{in.close(); } catch(Exception ex){}
+			try{
+				in.close(); 
+			} catch(Exception ex){
+				LOGGER.info(ex.toString());
+			}
 		}
 		
 		howToPlayFrame.getContentPane().add( new JScrollPane(howToPlay), BorderLayout.CENTER);

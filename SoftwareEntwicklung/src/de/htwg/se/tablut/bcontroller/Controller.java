@@ -1,7 +1,8 @@
 package de.htwg.se.tablut.bcontroller;
-import java.util.Scanner;
 import de.htwg.se.tablut.cmodel.*;
 import de.htwg.se.tablut.dutil.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller extends Observable implements IController{
 	
@@ -11,6 +12,7 @@ public class Controller extends Observable implements IController{
 	private boolean playerTurn = true;
 	private boolean winGameAttack = false;
 	private int matrixSize = 0;
+	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
 	
 	public Controller(){
 		gamefield = new Gamefield();
@@ -50,7 +52,9 @@ public class Controller extends Observable implements IController{
 				|| (gamefield.getField(0, gamefield.getSizeOfGameField()-1).getCharakter().getIsKing())
 				|| (gamefield.getField(gamefield.getSizeOfGameField()-1, 0).getCharakter().getIsKing())
 				|| (gamefield.getField(0, 0).getCharakter().getIsKing())){
-			System.out.println("\nVerteidiger hat gewonnen!\n");
+			LOGGER.setLevel(Level.FINEST);
+			LOGGER.info("\nVerteidiger hat gewonnen!");
+			//System.out.println("\nVerteidiger hat gewonnen!\n");
 			return false;
 			
 		} else
@@ -60,7 +64,8 @@ public class Controller extends Observable implements IController{
 	@Override
 	public boolean winGameAttack(){
 		if(hitrule.getKingVictory()){
-			System.out.println("\nAngreifer hat gewonnen!\n");
+			LOGGER.info("\n Angreifer hat gewonnen!");
+			//System.out.println("\nAngreifer hat gewonnen!\n");
 			return false;
 		}
 		return true;

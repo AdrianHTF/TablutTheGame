@@ -108,7 +108,6 @@ public class Gui extends JFrame implements IObserver {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println("9");
 						if(controller.getMatrixSize() == 0){
 							setButtonField(9);
 							controller.setMatrixSize(9);
@@ -123,7 +122,6 @@ public class Gui extends JFrame implements IObserver {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println("11");
 						if(controller.getMatrixSize() == 0){
 							setButtonField(11);
 							controller.setMatrixSize(11);
@@ -138,7 +136,6 @@ public class Gui extends JFrame implements IObserver {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						System.out.println("13");
 						if(controller.getMatrixSize() == 0){
 							setButtonField(13);
 							controller.setMatrixSize(13);
