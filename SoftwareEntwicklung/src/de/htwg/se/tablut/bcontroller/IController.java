@@ -8,4 +8,7 @@ public interface IController {
 	boolean getWinGameAttack();
 	void setWinGameAttack(boolean w);
 	Gamefield getGamefield();
+	void setMatrixSize(int size);
+	int getMatrixSize();
+	boolean getPlayerTurn();
 }

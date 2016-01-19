@@ -65,7 +65,7 @@ public class Gui extends JFrame implements IObserver {
 		burgIMG = new ImageIcon("Burg.jpg");
 		rammstein = new ImageIcon("rammstein");
 		
-		enterGamefield = new JFrame("Spielfeld w�hlen");
+		enterGamefield = new JFrame("Spielfeld waehlen");
 		enterPlayername = new JFrame("Spielernamen eingeben");
 		playTheGame = new JFrame("Tablut the Game");
 		
@@ -110,8 +110,8 @@ public class Gui extends JFrame implements IObserver {
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("9");
 						if(controller.getMatrixSize() == 0){
-							controller.setMatrixSize(9);
 							setButtonField(9);
+							controller.setMatrixSize(9);
 						}
 						enterGamefield.dispose();
 						enterPlayername.setJMenuBar(menuBar.getMenuBar());
@@ -125,8 +125,8 @@ public class Gui extends JFrame implements IObserver {
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("11");
 						if(controller.getMatrixSize() == 0){
-							controller.setMatrixSize(11);
 							setButtonField(11);
+							controller.setMatrixSize(11);
 						}
 						enterGamefield.dispose();
 						enterPlayername.setJMenuBar(menuBar.getMenuBar());
@@ -140,8 +140,8 @@ public class Gui extends JFrame implements IObserver {
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("13");
 						if(controller.getMatrixSize() == 0){
-							controller.setMatrixSize(13);
 							setButtonField(13);
+							controller.setMatrixSize(13);
 						}
 						enterGamefield.dispose();
 						enterPlayername.setJMenuBar(menuBar.getMenuBar());
@@ -163,7 +163,7 @@ public class Gui extends JFrame implements IObserver {
 				playerNamePanel = new JPanel(null);
 				playerNamePanel.setBackground(Color.ORANGE.darker());
 				insets = playerNamePanel.getInsets();
-				whoAttacks = new JTextArea("Du wagst es deinen K�nig anzugreifen?\nSo nenne deinen Namen");
+				whoAttacks = new JTextArea("Du wagst es deinen Koenig anzugreifen?\nSo nenne deinen Namen");
 					whoAttacks.setBackground(Color.BLACK.darker());
 					whoAttacks.setForeground(Color.RED.brighter());
 					whoAttacks.setEditable(false);
@@ -186,7 +186,7 @@ public class Gui extends JFrame implements IObserver {
 							
 						}
 					});
-				whoDefense = new JTextArea("Dein K�nig ist in Gefahr,\nVerteidige ihn!");
+				whoDefense = new JTextArea("Dein Koenig ist in Gefahr,\nVerteidige ihn!");
 					whoDefense.setBackground(Color.BLACK.darker());
 					whoDefense.setForeground(Color.RED.brighter());
 					whoDefense.setEditable(false);

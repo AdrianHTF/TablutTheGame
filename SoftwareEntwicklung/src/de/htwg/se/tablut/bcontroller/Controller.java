@@ -81,16 +81,19 @@ public class Controller extends Observable implements IController{
 		return gamefield;
 	}
 	
+	@Override
 	public void setMatrixSize(int size){
 		matrixSize = size;
 		gamefield.setStart(matrixSize);
 		notifyObservers();
 	}
 	
+	@Override
 	public int getMatrixSize(){
 		return matrixSize;
 	}
 	
+	@Override
 	public boolean getPlayerTurn(){
 		return playerTurn;
 	}

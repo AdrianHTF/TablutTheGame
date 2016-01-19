@@ -37,8 +37,15 @@ public class GuiMenuBar
 		help = new JMenu("Hilfe");
 		
 		//create Items 
-		undo = new JMenuItem("Ein Zug zurück");
-		redo = new JMenuItem("Ein Zug vorwärts");
+		undo = new JMenuItem("Ein Zug zurueck");
+		undo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		redo = new JMenuItem("Ein Zug vorwaerts");
 		restart = new JMenuItem("Neustart");
 		patt = new JMenuItem("Unentschieden?");
 		exit = new JMenuItem("Beenden");
