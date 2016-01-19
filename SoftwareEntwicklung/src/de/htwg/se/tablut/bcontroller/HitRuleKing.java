@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HitRuleKing {
-	private final static Logger LOGGER = Logger.getLogger(HitRuleKing.class.getName());
+	private static final  Logger LOGGER = Logger.getLogger(HitRuleKing.class.getName());
 	private Gamefield gamefield;
 	public HitRuleKing(){
 		

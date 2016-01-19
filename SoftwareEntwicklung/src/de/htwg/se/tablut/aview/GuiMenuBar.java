@@ -103,13 +103,11 @@ public class GuiMenuBar
 		return menuBar;
 	}
 	
-	public GuiSpielanleitung buildSpielanleitung(){
+	public void buildSpielanleitung(){
 		GuiSpielanleitung howToPlay = new GuiSpielanleitung();
-		return howToPlay;
 	}
 	
-	public GuiHilfe buildHelp(){
-		GuiHilfe help = new GuiHilfe();
-		return help;
+	public void buildHelp(){
+		GuiHilfe helpTxt = new GuiHilfe();
 	}
 }

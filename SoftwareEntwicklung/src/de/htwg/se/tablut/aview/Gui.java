@@ -85,7 +85,8 @@ public class Gui extends JFrame implements IObserver {
 				start.setBackground(Color.ORANGE.darker());
 				Dimension size;
 				Insets insets = start.getInsets();
-				playTablut = new JTextField("PLAY TABLUT");
+				final String playTablutString = "PLAY TABLUT";
+				playTablut = new JTextField(playTablutString);
 					playTablut.setEditable(false);
 					playTablut.setBackground(Color.BLACK);
 					playTablut.setForeground(Color.RED);
