@@ -1,6 +1,6 @@
 package de.htwg.se.tablut.dutil;
 
-import de.htwg.se.tablut.bcontroller.*;
+import de.htwg.se.tablut.bcontroller.Controller;
 
 public class UndoManager implements CommandPattern{
 	Controller controller;
