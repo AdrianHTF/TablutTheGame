@@ -11,4 +11,6 @@ public interface IController {
 	void setMatrixSize(int size);
 	int getMatrixSize();
 	boolean getPlayerTurn();
+	void undo();
+	void redo();
 }

@@ -3,6 +3,8 @@ import de.htwg.se.tablut.cmodel.*;
 import de.htwg.se.tablut.dutil.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Controller extends Observable implements IController{
 	
@@ -13,6 +15,8 @@ public class Controller extends Observable implements IController{
 	private boolean winGameAttack = false;
 	private int matrixSize = 0;
 	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
+	private Queue<Gamefield> undoList = new LinkedList<>();
+	private Queue<Gamefield> redoList = new LinkedList<>();
 	
 	public Controller(){
 		gamefield = new Gamefield();
@@ -43,6 +47,8 @@ public class Controller extends Observable implements IController{
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
 			playerTurn = !playerTurn;
 		}
+		undoList.add(gamefield);
+		redoList.clear();
 		notifyObservers();
 	}
 	
@@ -88,6 +94,7 @@ public class Controller extends Observable implements IController{
 	public void setMatrixSize(int size){
 		matrixSize = size;
 		gamefield.setStart(matrixSize);
+		undoList.add(gamefield);
 		notifyObservers();
 	}
 	
@@ -99,5 +106,23 @@ public class Controller extends Observable implements IController{
 	@Override
 	public boolean getPlayerTurn(){
 		return playerTurn;
+	}
+	
+	@Override
+	public void undo(){
+		if(!undoList.isEmpty()){
+			Gamefield g = undoList.poll();
+			gamefield = g;
+			redoList.add(g);
+			notifyObservers();
+		}
+	}
+	
+	@Override
+	public void redo(){
+		if(!redoList.isEmpty()){
+			gamefield = redoList.poll();
+			notifyObservers();
+		}
 	}
 }
