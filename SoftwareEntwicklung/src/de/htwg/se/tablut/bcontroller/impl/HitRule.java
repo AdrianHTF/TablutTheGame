@@ -4,15 +4,19 @@ import de.htwg.se.tablut.bcontroller.IHitRule;
 import de.htwg.se.tablut.bcontroller.IHitRuleKing;
 import de.htwg.se.tablut.cmodel.*;
 import de.htwg.se.tablut.cmodel.impl.Stone;
+import de.htwg.se.tablut.aview.StatusMessage;
+import de.htwg.se.tablut.bcontroller.GameStatus;
+import java.util.logging.Logger;
 
 public class HitRule implements IHitRule{
 	
-	
+	private static final Logger LOGGER = Logger.getLogger(HitRule.class.getName());
 	private IGamefield changedGamefield;
 	private int xAxis;
 	private int yAxis;
 	private boolean kingVictory = false;
 	private IHitRuleKing hk = new HitRuleKing(); 
+	private GameStatus status;
 	
 	public HitRule(){
 		
@@ -121,8 +125,10 @@ public class HitRule implements IHitRule{
 							!= changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
 							&& !changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing()) 
 					&& (changedGamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() 
-							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
-			changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
+				changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
 	
@@ -135,8 +141,10 @@ public class HitRule implements IHitRule{
 							!= changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
 					&& !changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() 
-						== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+						== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
 				changedGamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
 	
@@ -149,8 +157,10 @@ public class HitRule implements IHitRule{
 							!= changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
 							&& !changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification()
-							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
 				changedGamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
 	
@@ -163,9 +173,18 @@ public class HitRule implements IHitRule{
 							!= changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
 							&& !changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() 
-							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
 				changedGamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
+	}
+	
+	@Override
+	public void setStatus(GameStatus status){
+		this.status = status;
+		LOGGER.info(StatusMessage.text.get(status));
+		
 	}
 	
 	@Override

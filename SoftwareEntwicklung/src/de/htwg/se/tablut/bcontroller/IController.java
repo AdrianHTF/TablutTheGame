@@ -14,4 +14,6 @@ public interface IController extends IObservable {
 	boolean getPlayerTurn();
 	void undo();
 	void redo();
+	GameStatus getStatus();
+	void setStatus(GameStatus gs);
 }

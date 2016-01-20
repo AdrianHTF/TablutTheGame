@@ -3,18 +3,17 @@ import de.htwg.se.tablut.bcontroller.IController;
 import de.htwg.se.tablut.bcontroller.IHitRule;
 import de.htwg.se.tablut.bcontroller.IRules;
 import de.htwg.se.tablut.cmodel.*;
-import de.htwg.se.tablut.cmodel.impl.Gamefield;
-import de.htwg.se.tablut.cmodel.impl.Stone;
-import de.htwg.se.tablut.dutil.*;
+import de.htwg.se.tablut.cmodel.impl.*;
 import de.htwg.se.tablut.dutil.impl.Observable;
-
-import java.util.logging.Level;
+import de.htwg.se.tablut.bcontroller.GameStatus;
+import de.htwg.se.tablut.aview.StatusMessage;
 import java.util.logging.Logger;
 import java.util.Stack;
 import com.google.inject.Inject;
 
 public class Controller extends Observable implements IController{
 	
+	private GameStatus status = GameStatus.WELCOME;
 	private IGamefield gamefield;
 	private IRules rule;
 	private IHitRule hitrule;
@@ -47,6 +46,7 @@ public class Controller extends Observable implements IController{
 				&& rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
 			gamefield.getField(xStart, yStart).setCharakter(changeStone);
 			gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
+			setStatus(GameStatus.MOVE_SUCCESS);
 			undoPush();
 			redoList.clear();
 			if(xStart == gamefield.getSizeOfGameField()/2 && yStart == gamefield.getSizeOfGameField()/2){
@@ -56,8 +56,8 @@ public class Controller extends Observable implements IController{
 			}
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
 			playerTurn = !playerTurn;
-		}
-		
+		} else 
+			setStatus(GameStatus.MOVE_FAILE);
 		notifyObservers();
 	}
 	
@@ -67,8 +67,7 @@ public class Controller extends Observable implements IController{
 				|| (gamefield.getField(0, gamefield.getSizeOfGameField()-1).getCharakter().getIsKing())
 				|| (gamefield.getField(gamefield.getSizeOfGameField()-1, 0).getCharakter().getIsKing())
 				|| (gamefield.getField(0, 0).getCharakter().getIsKing())){
-			LOGGER.setLevel(Level.FINEST);
-			LOGGER.info("\nVerteidiger hat gewonnen!");//System.out.println("\nVerteidiger hat gewonnen!\n");
+			setStatus(GameStatus.WINGAME_DEFENSE);
 			return false;
 			
 		} else
@@ -78,7 +77,7 @@ public class Controller extends Observable implements IController{
 	@Override
 	public boolean winGameAttack(){
 		if(hitrule.getKingVictory()){
-			LOGGER.info("\n Angreifer hat gewonnen!");
+			setStatus(GameStatus.WINGAME_ATTACK);
 			return false;
 		}
 		return true;
@@ -103,6 +102,7 @@ public class Controller extends Observable implements IController{
 	public void setMatrixSize(int size){
 		matrixSize = size;
 		gamefield.setStart(matrixSize);
+		setStatus(GameStatus.CREATE);
 		undoPush();
 		notifyObservers();
 	}
@@ -125,9 +125,7 @@ public class Controller extends Observable implements IController{
 	
 	@Override
 	public void undo(){
-		System.out.println("Undo macht er");
 		if(!undoList.isEmpty()){
-			System.out.println("kommt auch hier rein");
 			IGamefield g = undoList.pop();
 			gamefield = g;
 			redoList.add(g);
@@ -141,5 +139,16 @@ public class Controller extends Observable implements IController{
 			gamefield = redoList.pop();
 			notifyObservers();
 		}
+	}
+	
+	@Override
+	public GameStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public void setStatus(GameStatus status) {
+		this.status = status;
+		LOGGER.info(StatusMessage.text.get(status));
 	}
 }

@@ -76,7 +76,7 @@ public class TextUI implements IObserver {
 		}
 		
 		for(int i = 0; i < 5; i++){
-			sb.append("");
+			sb.append("\n");
 		}
 		LOGGER.info(sb.toString());
 	}
