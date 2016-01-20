@@ -15,7 +15,7 @@ import de.htwg.se.tablut.dutil.Event;
 public class Gui extends JFrame implements IObserver {
 	
 	private static final long serialVersionUID = 1L;
-	private Controller controller;
+	private IController controller;
 	private Icon angreiferIMG;
 	private Icon koenigIMG;
 	private Icon verteidigerIMG;
@@ -56,7 +56,7 @@ public class Gui extends JFrame implements IObserver {
 		private final JPanel main;
 
 	
-	public Gui(Controller c){
+	public Gui(IController c){
 		controller = c;
 		controller.addObserver(this);
 		angreiferIMG = new ImageIcon("Angreifer.jpg");

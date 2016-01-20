@@ -8,10 +8,10 @@ import java.util.logging.Logger;
 
 public class TextUI implements IObserver {
 	
-	private Controller controller;
+	private IController controller;
 	private static final Logger LOGGER = Logger.getLogger(TextUI.class.getName());
 	
-	public TextUI(Controller c){
+	public TextUI(IController c){
 		this.controller = c;
 		controller.addObserver(this);
 	}

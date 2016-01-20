@@ -1,22 +1,31 @@
-package de.htwg.se.tablut.bcontroller;
+package de.htwg.se.tablut.bcontroller.impl;
+import de.htwg.se.tablut.bcontroller.IController;
+import de.htwg.se.tablut.bcontroller.IHitRule;
+import de.htwg.se.tablut.bcontroller.IRules;
 import de.htwg.se.tablut.cmodel.*;
+import de.htwg.se.tablut.cmodel.impl.Gamefield;
+import de.htwg.se.tablut.cmodel.impl.Stone;
 import de.htwg.se.tablut.dutil.*;
+import de.htwg.se.tablut.dutil.impl.Observable;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Stack;
+import com.google.inject.Inject;
 
 public class Controller extends Observable implements IController{
 	
-	private Gamefield gamefield;
-	private Rules rule;
-	private HitRule hitrule;
+	private IGamefield gamefield;
+	private IRules rule;
+	private IHitRule hitrule;
 	private boolean playerTurn = true;
 	private boolean winGameAttack = false;
 	private int matrixSize = 0;
 	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
-	private Stack<Gamefield> undoList = new Stack<>();
-	private Stack<Gamefield> redoList = new Stack<>();
+	private Stack<IGamefield> undoList = new Stack<>();
+	private Stack<IGamefield> redoList = new Stack<>();
 	
+	@Inject
 	public Controller(){
 		gamefield = new Gamefield();
 		rule = new Rules();
@@ -86,7 +95,7 @@ public class Controller extends Observable implements IController{
 	}
 	
 	@Override
-	public Gamefield getGamefield(){
+	public IGamefield getGamefield(){
 		return gamefield;
 	}
 	
@@ -109,7 +118,7 @@ public class Controller extends Observable implements IController{
 	}
 	
 	public void undoPush(){
-		Gamefield c = new Gamefield();
+		IGamefield c = new Gamefield();
 		c = gamefield;
 		undoList.push(c);
 	}
@@ -119,7 +128,7 @@ public class Controller extends Observable implements IController{
 		System.out.println("Undo macht er");
 		if(!undoList.isEmpty()){
 			System.out.println("kommt auch hier rein");
-			Gamefield g = undoList.pop();
+			IGamefield g = undoList.pop();
 			gamefield = g;
 			redoList.add(g);
 			notifyObservers();

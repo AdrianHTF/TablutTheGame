@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.tablut.cmodel.impl.Stone;
+
 public class StoneTest {
 
 	Stone s0;

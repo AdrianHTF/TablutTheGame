@@ -1,5 +1,7 @@
 package de.htwg.se.tablut.cmodel;
 
+import de.htwg.se.tablut.cmodel.impl.Stone;
+
 public interface IField {
 	
 	/**

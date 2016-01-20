@@ -1,5 +1,7 @@
 package de.htwg.se.tablut.cmodel;
 
+import de.htwg.se.tablut.cmodel.impl.Field;
+
 public interface IGamefield {
 	void setStart(int i);
 	Field[][] getGameField();

@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.tablut.bcontroller.impl.Controller;
+
 public class ControllerTest {
 
 	Controller c1; // test size 13 and not wingame by hiting king

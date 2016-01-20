@@ -1,9 +1,12 @@
-package de.htwg.se.tablut.bcontroller;
-import de.htwg.se.tablut.cmodel.*;
+package de.htwg.se.tablut.bcontroller.impl;
 
-public class Rules {
-	
-	public boolean drawRules(Gamefield gamefield,
+import de.htwg.se.tablut.bcontroller.IRules;
+import de.htwg.se.tablut.cmodel.*;
+import de.htwg.se.tablut.cmodel.impl.Stone;
+
+public class Rules implements IRules{
+	@Override
+	public boolean drawRules(IGamefield gamefield,
 			Stone drawStone, Stone changeStone,
 			int xStart, int xZiel, int yStart, int yZiel){
 		
@@ -21,8 +24,8 @@ public class Rules {
 				return true;
 			}
 	}
-	
-	public boolean yourTurn(boolean playerTurn, Gamefield gamefield,
+	@Override
+	public boolean yourTurn(boolean playerTurn, IGamefield gamefield,
 			int xStart, int yStart){
 		if (playerTurn){
 			if(gamefield.getField(xStart, yStart).getCharakter().getUnitSpecification() == 1){
@@ -36,8 +39,8 @@ public class Rules {
 		return false;
 	}
 	
-
-	public boolean yMove(Gamefield gamefield,
+	@Override
+	public boolean yMove(IGamefield gamefield,
 			int xStart, int yStart, int yZiel){
 		if(yStart < yZiel){
 			for(int i = yStart + 1; i <= yZiel; i++){
@@ -54,8 +57,8 @@ public class Rules {
 		}
 		return true;
 	}
-	
-	public boolean xMove(Gamefield gamefield,
+	@Override
+	public boolean xMove(IGamefield gamefield,
 			int xStart, int xZiel,  int yStart){
 		if(xStart < xZiel){
 			for (int i = xStart+1; i <= xZiel; i++){

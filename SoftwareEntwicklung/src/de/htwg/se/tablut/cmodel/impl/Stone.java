@@ -1,4 +1,6 @@
-package de.htwg.se.tablut.cmodel;
+package de.htwg.se.tablut.cmodel.impl;
+
+import de.htwg.se.tablut.cmodel.IStone;
 
 /**
  * 
