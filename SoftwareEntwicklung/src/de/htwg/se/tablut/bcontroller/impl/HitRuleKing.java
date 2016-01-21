@@ -1,13 +1,14 @@
-package de.htwg.se.tablut.bcontroller;
+package de.htwg.se.tablut.bcontroller.impl;
 
+import de.htwg.se.tablut.bcontroller.IHitRuleKing;
 import de.htwg.se.tablut.cmodel.*;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HitRuleKing {
+public class HitRuleKing implements IHitRuleKing{
 	private static final  Logger LOGGER = Logger.getLogger(HitRuleKing.class.getName());
-	private Gamefield gamefield;
+	private IGamefield gamefield;
+	
 	public HitRuleKing(){
 		
 	}
@@ -43,7 +44,8 @@ public class HitRuleKing {
 		return false;
 	}
 	
-	public boolean kingHit(Gamefield gamefield, int xAxis, int yAxis){
+	@Override
+	public boolean kingHit(IGamefield gamefield, int xAxis, int yAxis){
 		this.gamefield = gamefield;
 		if(gamefield.getField(xAxis, yAxis).getCharakter().getIsKing()){
 			return hitRuleKingLeft(xAxis, yAxis)&& hitRuleKingLower(xAxis, yAxis) 

@@ -1,4 +1,4 @@
-package de.htwg.se.tablut.dutil;
+package de.htwg.se.tablut.dutil.impl;
 
 import de.htwg.se.tablut.dutil.CommandPattern;
 

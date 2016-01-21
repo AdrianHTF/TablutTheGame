@@ -1,22 +1,30 @@
-package de.htwg.se.tablut.bcontroller;
+package de.htwg.se.tablut.bcontroller.impl;
+import de.htwg.se.tablut.bcontroller.IController;
+import de.htwg.se.tablut.bcontroller.IHitRule;
+import de.htwg.se.tablut.bcontroller.IRules;
 import de.htwg.se.tablut.cmodel.*;
-import de.htwg.se.tablut.dutil.*;
-import java.util.logging.Level;
+import de.htwg.se.tablut.cmodel.impl.*;
+import de.htwg.se.tablut.dutil.impl.Observable;
+import de.htwg.se.tablut.bcontroller.GameStatus;
+import de.htwg.se.tablut.aview.StatusMessage;
 import java.util.logging.Logger;
 import java.util.Stack;
+import com.google.inject.Inject;
 
 public class Controller extends Observable implements IController{
 	
-	private Gamefield gamefield;
-	private Rules rule;
-	private HitRule hitrule;
+	private GameStatus status = GameStatus.WELCOME;
+	private IGamefield gamefield;
+	private IRules rule;
+	private IHitRule hitrule;
 	private boolean playerTurn = true;
 	private boolean winGameAttack = false;
 	private int matrixSize = 0;
 	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
-	private Stack<Gamefield> undoList = new Stack<>();
-	private Stack<Gamefield> redoList = new Stack<>();
+	private Stack<IGamefield> undoList = new Stack<>();
+	private Stack<IGamefield> redoList = new Stack<>();
 	
+	@Inject
 	public Controller(){
 		gamefield = new Gamefield();
 		rule = new Rules();
@@ -38,6 +46,7 @@ public class Controller extends Observable implements IController{
 				&& rule.drawRules(gamefield, drawStone, changeStone, xStart, xZiel, yStart, yZiel)){
 			gamefield.getField(xStart, yStart).setCharakter(changeStone);
 			gamefield.getField(xZiel, yZiel).setCharakter(drawStone);
+			setStatus(GameStatus.MOVE_SUCCESS);
 			undoPush();
 			redoList.clear();
 			if(xStart == gamefield.getSizeOfGameField()/2 && yStart == gamefield.getSizeOfGameField()/2){
@@ -47,8 +56,8 @@ public class Controller extends Observable implements IController{
 			}
 			gamefield = hitrule.hit(gamefield, xZiel, yZiel);
 			playerTurn = !playerTurn;
-		}
-		
+		} else 
+			setStatus(GameStatus.MOVE_FAILE);
 		notifyObservers();
 	}
 	
@@ -58,8 +67,7 @@ public class Controller extends Observable implements IController{
 				|| (gamefield.getField(0, gamefield.getSizeOfGameField()-1).getCharakter().getIsKing())
 				|| (gamefield.getField(gamefield.getSizeOfGameField()-1, 0).getCharakter().getIsKing())
 				|| (gamefield.getField(0, 0).getCharakter().getIsKing())){
-			LOGGER.setLevel(Level.FINEST);
-			LOGGER.info("\nVerteidiger hat gewonnen!");//System.out.println("\nVerteidiger hat gewonnen!\n");
+			setStatus(GameStatus.WINGAME_DEFENSE);
 			return false;
 			
 		} else
@@ -69,7 +77,7 @@ public class Controller extends Observable implements IController{
 	@Override
 	public boolean winGameAttack(){
 		if(hitrule.getKingVictory()){
-			LOGGER.info("\n Angreifer hat gewonnen!");
+			setStatus(GameStatus.WINGAME_ATTACK);
 			return false;
 		}
 		return true;
@@ -86,7 +94,7 @@ public class Controller extends Observable implements IController{
 	}
 	
 	@Override
-	public Gamefield getGamefield(){
+	public IGamefield getGamefield(){
 		return gamefield;
 	}
 	
@@ -94,6 +102,7 @@ public class Controller extends Observable implements IController{
 	public void setMatrixSize(int size){
 		matrixSize = size;
 		gamefield.setStart(matrixSize);
+		setStatus(GameStatus.CREATE);
 		undoPush();
 		notifyObservers();
 	}
@@ -109,17 +118,15 @@ public class Controller extends Observable implements IController{
 	}
 	
 	public void undoPush(){
-		Gamefield c = new Gamefield();
+		IGamefield c = new Gamefield();
 		c = gamefield;
 		undoList.push(c);
 	}
 	
 	@Override
 	public void undo(){
-		System.out.println("Undo macht er");
 		if(!undoList.isEmpty()){
-			System.out.println("kommt auch hier rein");
-			Gamefield g = undoList.pop();
+			IGamefield g = undoList.pop();
 			gamefield = g;
 			redoList.add(g);
 			notifyObservers();
@@ -132,5 +139,16 @@ public class Controller extends Observable implements IController{
 			gamefield = redoList.pop();
 			notifyObservers();
 		}
+	}
+	
+	@Override
+	public GameStatus getStatus() {
+		return status;
+	}
+
+	@Override
+	public void setStatus(GameStatus status) {
+		this.status = status;
+		LOGGER.info(StatusMessage.text.get(status));
 	}
 }

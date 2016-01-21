@@ -15,12 +15,12 @@ import de.htwg.se.tablut.dutil.Event;
 public class Gui extends JFrame implements IObserver {
 	
 	private static final long serialVersionUID = 1L;
-	private Controller controller;
+	private IController controller;
 	private Icon angreiferIMG;
 	private Icon koenigIMG;
 	private Icon verteidigerIMG;
 	private Icon burgIMG;
-	private ImageIcon rammstein;
+	private ImageIcon knight;
 	private int state = 0;
 	private boolean setByTextUI = false;
 	private int xStart;
@@ -56,14 +56,14 @@ public class Gui extends JFrame implements IObserver {
 		private final JPanel main;
 		private final String playTablutString = "PLAY TABLUT";
 	
-	public Gui(Controller c){
+	public Gui(IController c){
 		controller = c;
 		controller.addObserver(this);
 		angreiferIMG = new ImageIcon("Angreifer.jpg");
 		verteidigerIMG = new ImageIcon("Verteidiger.jpg");
 		koenigIMG = new ImageIcon("Koenig.jpg");
 		burgIMG = new ImageIcon("Burg.jpg");
-		rammstein = new ImageIcon("rammstein");
+		knight = new ImageIcon("knight.png");
 		
 		enterGamefield = new JFrame("Spielfeld waehlen");
 		enterPlayername = new JFrame("Spielernamen eingeben");
@@ -94,10 +94,11 @@ public class Gui extends JFrame implements IObserver {
 					size = playTablut.getPreferredSize();
 					playTablut.setBounds(10 + insets.left, 10 + insets.top, size.width, size.height);
 				
+				size = new Dimension(350, 260);
+				picture = new JLabel();
+					picture.setBounds(10 + insets.left, 230, size.width, size.height);
+					picture.setIcon(knight);
 				size = new Dimension(200, 40);
-				picture = new JLabel("bsl");
-					picture.setBounds(100 + insets.left, 350, size.width, size.height);
-					picture.setIcon(rammstein);
 				size9 = new JButton("Tablut 9x9");
 					size9.setBounds(390 + insets.left, 250 , size.width, size.height);
 				size11 = new JButton("Hnefatafl 11x11");

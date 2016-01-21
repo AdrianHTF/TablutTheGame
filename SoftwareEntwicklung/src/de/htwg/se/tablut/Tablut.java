@@ -1,19 +1,22 @@
 package de.htwg.se.tablut;
 import de.htwg.se.tablut.aview.*;
-import de.htwg.se.tablut.bcontroller.Controller;
+import de.htwg.se.tablut.bcontroller.*;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class Tablut {
 	
 	private static final Logger LOGGER= Logger.getLogger(Tablut.class.getName());
 	private TextUI textUI;
 	private Gui gui;
-	private Controller controller;
 	
 	public Tablut(){
-		controller = new Controller();
+		Injector injector = Guice.createInjector(new TablutModule());
+		
+		IController controller = injector.getInstance(IController.class);
 		gui = new Gui(controller);
 		textUI = new TextUI(controller);
 		Scanner sc = new Scanner(System.in);

@@ -1,10 +1,12 @@
 package de.htwg.se.tablut.aview;
 
 import javax.swing.*;
-
 import java.awt.event.*;
-import de.htwg.se.tablut.bcontroller.Controller;
+import de.htwg.se.tablut.bcontroller.*;
 import de.htwg.se.tablut.dutil.*;
+import de.htwg.se.tablut.dutil.impl.Invoker;
+import de.htwg.se.tablut.dutil.impl.RedoManager;
+import de.htwg.se.tablut.dutil.impl.UndoManager;
 
 
 public class GuiMenuBar
@@ -14,7 +16,7 @@ public class GuiMenuBar
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Controller controller;
+	private IController controller;
 	private CommandPattern undoCommand;
 	private CommandPattern redoCommand;
 	private Invoker invoker;
@@ -34,7 +36,7 @@ public class GuiMenuBar
 	private final JMenuItem controles;
 	
 	
-	public GuiMenuBar(JFrame j, JFrame i, JFrame x, Controller c){
+	public GuiMenuBar(JFrame j, JFrame i, JFrame x, IController c){
 		controller = c;
 		undoCommand = new UndoManager(controller);
 		redoCommand = new RedoManager(controller);

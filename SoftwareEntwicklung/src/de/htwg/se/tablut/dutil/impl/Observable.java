@@ -1,8 +1,12 @@
-package de.htwg.se.tablut.dutil;
+package de.htwg.se.tablut.dutil.impl;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.htwg.se.tablut.dutil.Event;
+import de.htwg.se.tablut.dutil.IObservable;
+import de.htwg.se.tablut.dutil.IObserver;
 
 public class Observable implements IObservable {
 /* Fields */

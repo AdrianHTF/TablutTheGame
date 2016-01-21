@@ -1,21 +1,29 @@
-package de.htwg.se.tablut.bcontroller;
+package de.htwg.se.tablut.bcontroller.impl;
 
+import de.htwg.se.tablut.bcontroller.IHitRule;
+import de.htwg.se.tablut.bcontroller.IHitRuleKing;
 import de.htwg.se.tablut.cmodel.*;
+import de.htwg.se.tablut.cmodel.impl.Stone;
+import de.htwg.se.tablut.aview.StatusMessage;
+import de.htwg.se.tablut.bcontroller.GameStatus;
+import java.util.logging.Logger;
 
-public class HitRule {
+public class HitRule implements IHitRule{
 	
-	
-	private Gamefield changedGamefield;
+	private static final Logger LOGGER = Logger.getLogger(HitRule.class.getName());
+	private IGamefield changedGamefield;
 	private int xAxis;
 	private int yAxis;
 	private boolean kingVictory = false;
-	private HitRuleKing hk = new HitRuleKing(); 
+	private IHitRuleKing hk = new HitRuleKing(); 
+	private GameStatus status;
 	
 	public HitRule(){
 		
 	}
 	
-	public Gamefield hit(Gamefield gamefield, int xAxis, int yAxis){
+	@Override
+	public IGamefield hit(IGamefield gamefield, int xAxis, int yAxis){
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
 		changedGamefield = gamefield;
@@ -117,10 +125,13 @@ public class HitRule {
 							!= changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getUnitSpecification())
 							&& !changedGamefield.getField(xAxis, yAxis - 1).getCharakter().getIsKing()) 
 					&& (changedGamefield.getField(xAxis , yAxis - 2).getCharakter().getUnitSpecification() 
-							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
-			changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
+				changedGamefield.getField(xAxis, yAxis - 1).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
+	
 	private void hitRight(){
 		if(changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing())
 			setKingVictory(hk.kingHit(changedGamefield, xAxis + 1, yAxis));
@@ -130,10 +141,13 @@ public class HitRule {
 							!= changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getUnitSpecification())
 					&& !changedGamefield.getField(xAxis + 1, yAxis).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis + 2 , yAxis).getCharakter().getUnitSpecification() 
-						== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+						== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
 				changedGamefield.getField(xAxis + 1, yAxis).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
+	
 	private void hitLeft(){
 		if(changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing())
 			setKingVictory(hk.kingHit(changedGamefield, xAxis - 1, yAxis));
@@ -143,10 +157,13 @@ public class HitRule {
 							!= changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getUnitSpecification())
 							&& !changedGamefield.getField(xAxis - 1, yAxis).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis - 2 , yAxis).getCharakter().getUnitSpecification()
-							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
 				changedGamefield.getField(xAxis - 1, yAxis).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
+	
 	private void hitBott(){
 		if(changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing())
 			setKingVictory(hk.kingHit(changedGamefield, xAxis, yAxis + 1));
@@ -156,15 +173,26 @@ public class HitRule {
 							!= changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getUnitSpecification())
 							&& !changedGamefield.getField(xAxis, yAxis + 1).getCharakter().getIsKing())
 					&& (changedGamefield.getField(xAxis , yAxis + 2).getCharakter().getUnitSpecification() 
-							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification()))
+							== changedGamefield.getField(xAxis, yAxis).getCharakter().getUnitSpecification())){
 				changedGamefield.getField(xAxis, yAxis + 1).setCharakter(new Stone(0));
+				setStatus(GameStatus.HIT);
+			}
 		}
 	}
 	
+	@Override
+	public void setStatus(GameStatus status){
+		this.status = status;
+		LOGGER.info(StatusMessage.text.get(status));
+		
+	}
+	
+	@Override
 	public boolean getKingVictory(){
 		return kingVictory;
 	}
 	
+	@Override
 	public void setKingVictory(boolean kingVictory){
 		if(!this.kingVictory)
 			this.kingVictory = kingVictory;

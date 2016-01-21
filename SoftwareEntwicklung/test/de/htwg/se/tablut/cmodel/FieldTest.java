@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.se.tablut.cmodel.impl.Field;
+import de.htwg.se.tablut.cmodel.impl.Stone;
+
 public class FieldTest {
 
 	Field f1;
