@@ -141,6 +141,21 @@ public class ControllerTest {
 	}
 	
 	@Test
+	public void testUndo(){
+		c1.undo();
+	}
+	
+	@Test
+	public void tetsRedo(){
+		c1.redo();
+	}
+	
+	@Test
+	public void testGetStatus(){
+		c1.getStatus();
+	}
+	
+	@Test
 	public void testGetGamefield(){
 		c1.getGamefield();
 	}
