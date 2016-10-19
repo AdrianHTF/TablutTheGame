@@ -9,26 +9,43 @@ import com.google.inject.Injector;
 
 public class Tablut {
 	
-	private static final Logger LOGGER= Logger.getLogger(Tablut.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Tablut.class.getName());
+	protected IController controller;
 	private TextUI textUI;
 	private Gui gui;
+	private static Tablut instance = null;
 	
 	public Tablut(){
 		Injector injector = Guice.createInjector(new TablutModule());
-		
-		IController controller = injector.getInstance(IController.class);
-		gui = new Gui(controller);
+		controller = injector.getInstance(IController.class);
+		//gui = new Gui(controller);
 		textUI = new TextUI(controller);
-		Scanner sc = new Scanner(System.in);
-		LOGGER.setLevel(Level.FINEST);
-		LOGGER.info("Geben Sie eine Feldgroesse an.");
-		do{
-			textUI.funktion(sc.next());
-		}while (controller.winGameAttack() && controller.winGame());
+		textUI.funktion("9");
+	}
+	
+	public static Tablut getInstance() {
+		if (instance == null) {
+			instance = new Tablut();
+		}
+		return instance;
+	}
+	
+	public TextUI getTui() {
+		return textUI;
+	}
+	
+	public IController getController() {
+		return controller;
 	}
 	
 	public static void main(String[] args) {
-		Tablut tablut = new Tablut();
+		Tablut tablut = Tablut.getInstance();
+		Scanner sc = new Scanner(System.in);
+		LOGGER.setLevel(Level.FINEST);
+		LOGGER.info("Geben Sie eine Feldgroesse an.");
+		do {
+			tablut.getTui().funktion(sc.next());
+		}while (tablut.getController().winGameAttack() && tablut.getController().winGame());
 	}
 
 }
