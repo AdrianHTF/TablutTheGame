@@ -63,9 +63,8 @@ public class TextUI implements IObserver {
 		}
 		return arg;
 	}
-
-	@Override
-	public void update(Event e) {
+	
+	public String buildString() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < controller.getGamefield().getSizeOfGameField(); i++){
 			for (int j = 0; j< controller.getGamefield().getSizeOfGameField(); j++){
@@ -78,6 +77,12 @@ public class TextUI implements IObserver {
 		for(int i = 0; i < 5; i++){
 			sb.append("\n");
 		}
-		LOGGER.info(sb.toString());
+		return sb.toString();
+	}
+
+	@Override
+	public void update(Event e) {
+		
+		LOGGER.info(buildString());
 	}
 }
