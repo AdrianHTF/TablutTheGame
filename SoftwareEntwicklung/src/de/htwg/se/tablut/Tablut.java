@@ -18,9 +18,8 @@ public class Tablut {
 	public Tablut(){
 		Injector injector = Guice.createInjector(new TablutModule());
 		controller = injector.getInstance(IController.class);
-		//gui = new Gui(controller);
+		gui = new Gui(controller);
 		textUI = new TextUI(controller);
-		textUI.funktion("9");
 	}
 	
 	public static Tablut getInstance() {
