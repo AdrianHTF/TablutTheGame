@@ -9,6 +9,10 @@ import de.htwg.se.tablut.bcontroller.GameStatus;
 import de.htwg.se.tablut.aview.StatusMessage;
 import java.util.logging.Logger;
 import java.util.Stack;
+
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import com.google.inject.Inject;
 
 public class Controller extends Observable implements IController{
@@ -150,5 +154,34 @@ public class Controller extends Observable implements IController{
 	public void setStatus(GameStatus status) {
 		this.status = status;
 		LOGGER.info(StatusMessage.text.get(status));
+	}
+	
+	public void saveGame() {
+		System.out.println("Saving...");
+		ObjectContainer db = Db4o.openFile("./beispiel.db");
+		
+		try {
+			db.store(gamefield);
+			
+			ObjectSet result = db.queryByExample(gamefield);
+			while (result.hasNext()) {
+				System.out.println(result.next());
+			}
+		} finally {
+			db.close();
+			notifyObservers();
+		}
+	}
+	
+	public void loadGame() {
+		System.out.println("loading...");
+		ObjectContainer db = Db4o.openFile("./beispiel.db");
+		try {
+			ObjectSet result = db.queryByExample(gamefield);
+			gamefield = (IGamefield) result.next();
+		} finally {
+			db.close();
+			notifyObservers();
+		}
 	}
 }

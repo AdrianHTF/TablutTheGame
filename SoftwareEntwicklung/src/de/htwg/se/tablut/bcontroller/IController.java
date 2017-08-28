@@ -16,4 +16,6 @@ public interface IController extends IObservable {
 	void redo();
 	GameStatus getStatus();
 	void setStatus(GameStatus gs);
+	void saveGame();
+	void loadGame();
 }

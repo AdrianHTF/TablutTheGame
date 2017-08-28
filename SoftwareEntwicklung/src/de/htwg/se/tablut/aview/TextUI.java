@@ -21,6 +21,10 @@ public class TextUI implements IObserver {
 			moveEingabe(line);
 		} else if(line.matches("[0-9]+")){
 			matrixSizeEingabe(line);
+		} else if (line.matches("save")) {
+			controller.saveGame();
+		} else if (line.matches("load")) {
+			controller.loadGame();
 		}
 	}
 	
@@ -82,7 +86,6 @@ public class TextUI implements IObserver {
 
 	@Override
 	public void update(Event e) {
-		
 		LOGGER.info(buildString());
 	}
 }

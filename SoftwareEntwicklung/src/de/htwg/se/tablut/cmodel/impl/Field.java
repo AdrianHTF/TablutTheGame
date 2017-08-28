@@ -66,17 +66,17 @@ public class Field implements IField {
 	}
 	
 	@Override
-	public String toString(){
+	public String toString() {
 		String d = "_";
 		Stone k = getCharakter();
 		
-		if (k.getUnitSpecification() == 1){
+		if (k.getUnitSpecification() == 1) {
 			d = "A";
-		}else if (k.getIsKing()){
+		}else if (k.getIsKing()) {
 			d = "K";
-		}else if (k.getUnitSpecification() == 2){
+		}else if (k.getUnitSpecification() == 2) {
 			d = "D";
-		}else if (isVictory()){
+		}else if (isVictory()) {
 			d = "X";
 		}
 		StringBuilder s = new StringBuilder();
